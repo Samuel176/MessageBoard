@@ -1,0 +1,95 @@
+<%- include("partials/header.ejs") %>
+<div class="container-fluid">
+    <div class="title-section">
+        <h1 class="title">Sam's Controversial Message Board</h1>
+    </div>
+    <div class="container-fluid">
+        <div class="row row-div">
+            </form>
+            <div class="col-md-4 form-container">
+                    <!-- message form -->
+                    <h3>New Post</h3>
+                    <form id="message-form" action="/submit" method="POST">
+                        <div class="form-group">
+                        <input class="message-input-box" type="text" name="user" placeholder="User Name">
+                        <input class="message-input-box" type="text" name="subject" placeholder="Subject">
+                        <textarea class="message-text-box" type="text" name="text" placeholder="Your Message" cols="50" rows="4"></textarea>
+                        <input class="button-syles" type="submit" value="Submit">
+                        </div>
+                    </form>
+            </div>
+            <div class="col-md-8">
+                <h4 >Welcome to Sam's message board! type something to get started</h4>
+                <p>Here you can post and chat with your friends!</p>
+               <div class="topic-container">
+                    <h4>The Topic of the day is!</h4>
+                    <h3 class="randomTopic"><%=randomTopic %></h3>
+                </div>
+             </div> 
+        </div>
+        <div class="message-board-container col-md-12">
+            <h2 class="post-title">Posts</h2>
+            <ul class="message-board-list">
+                <% messages.forEach(message => { %>
+                    <div class="row">
+                        <div class="col-md-7 col-sm-12 text-area">
+                            <li class="message-item">
+                                <p class="user-name"><%= message.user %>  </p>
+                                <p class="subject-name">Subject: <%= message.subject %></p>
+                                <p class="message-text"><%= message.text %></p>
+                                <div>
+                                 <!-- edit form -->
+                                <form class="edit-hidden" id="editForm<%= message.id %>" action="/edit/<%= message.id %>" method="POST">
+                                    <input  class="message-input-box-edit"type="text" name="userEdit" placeholder="<%= message.user %>">
+                                    <input class="message-input-box-edit" type="text" name="subjectEdit" placeholder="<%= message.subject %>">
+                                    <textarea class="message-text-box-edit" type="text" name="textEdit" placeholder="<%= message.text %>"></textarea>
+                                    <input class="small-button-syles-edit" type="submit" value="Send">
+                                </form>
+                                <!-- co -->
+                                </div>
+                                
+                        </div>
+                        <div class="col-md-5">
+                            <ul>
+                                <h4>Comments</h4>
+                                <% comments
+                                .filter(comment => comment.messageId === message.id)
+                                .slice(0,2)
+                                .forEach(comment => { %>
+                                <li class="comment-item">
+                                    <p class="comment-user"><strong> <%= comment.user %> :</strong></p>
+                                    <p class="comment-text"><strong></strong> <%= comment.text %></p>
+                                    
+                                </li>
+                                <% }); %>
+                            </ul>
+                                <div>
+                                    <form class="comment-form" id="commentForm<%= message.id %>" action="/comment/<%= message.id %>" method="POST">
+                                        <input class="message-input-box" type="text" name="userComment" placeholder="User Name">
+                                        <textarea class="message-text-box" name="textComment" placeholder="Your Comment"></textarea>
+                                        <button class="small-button-syles" type="submit">Submit</button>
+                                    </form>
+                                </div>
+                        </div>
+                            <div class="col-md-12 col-sm-12 button-container">
+                            <!-- delete form, comment, edit button  -->
+                            <!-- <button class="small-button-syles" onclick="const form = document.getElementById('commentForm<%= message.id %>'); form.style.display = (form.style.display === 'none') ? 'none' : 'block';">Comment</button>-->
+                            <button class="small-button-syles" onclick="const form = document.getElementById('editForm<%= message.id %>'); form.style.display = (form.style.display === 'none') ? 'none' : 'block';">Edit</button>
+                            
+                            <a href="/messages/<%= message.id %>" class=""><button class="small-button-syles">View</button></a>
+                            </form>
+                            <form method="POST" action="/delete/<%= message.id %>"> 
+                                <button class="small-button-syles">delete</button>
+                                
+                            </form>
+                            </div>
+                            <hr>
+                        </li>
+                    </div>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+</div>
+<%- include("partials/footer.ejs") %>
+<script src="/js/index.js"></script>
