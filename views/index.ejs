@@ -8,7 +8,7 @@
             </form>
             <div class="col-md-4 form-container">
                     <!-- message form -->
-                    <h3>New Subject</h3>
+                    <h3>New Post</h3>
                     <form id="message-form" action="/submit" method="POST">
                         <div class="form-group">
                         <input class="message-input-box" type="text" name="user" placeholder="User Name">
@@ -28,7 +28,7 @@
              </div> 
         </div>
         <div class="message-board-container col-md-12">
-            <h2 class="post-title">Posts!</h2>
+            <h2 class="post-title">Posts</h2>
             <ul class="message-board-list">
                 <% messages.forEach(message => { %>
                     <div class="row">
@@ -40,10 +40,10 @@
                                 <div>
                                  <!-- edit form -->
                                 <form class="edit-hidden" id="editForm<%= message.id %>" action="/edit/<%= message.id %>" method="POST">
-                                    <input  class="message-input-box"type="text" name="userEdit" placeholder="<%= message.user %>">
-                                    <input class="message-input-box" type="text" name="subjectEdit" placeholder="<%= message.subject %>">
-                                    <textarea class="message-text-box" type="text" name="textEdit" placeholder="<%= message.text %>"></textarea>
-                                    <input class="small-button-syles" type="submit" value="Send">
+                                    <input  class="message-input-box-edit"type="text" name="userEdit" placeholder="<%= message.user %>">
+                                    <input class="message-input-box-edit" type="text" name="subjectEdit" placeholder="<%= message.subject %>">
+                                    <textarea class="message-text-box-edit" type="text" name="textEdit" placeholder="<%= message.text %>"></textarea>
+                                    <input class="small-button-syles-edit" type="submit" value="Send">
                                 </form>
                                 <!-- co -->
                                 </div>
@@ -73,10 +73,10 @@
                         </div>
                             <div class="col-md-12 col-sm-12 button-container">
                             <!-- delete form, comment, edit button  -->
-                            <button class="small-button-syles" onclick="const form = document.getElementById('commentForm<%= message.id %>'); form.style.display = (form.style.display === 'none') ? 'none' : 'block';">Comment</button>
+                            <!-- <button class="small-button-syles" onclick="const form = document.getElementById('commentForm<%= message.id %>'); form.style.display = (form.style.display === 'none') ? 'none' : 'block';">Comment</button>-->
                             <button class="small-button-syles" onclick="const form = document.getElementById('editForm<%= message.id %>'); form.style.display = (form.style.display === 'none') ? 'none' : 'block';">Edit</button>
                             
-                            <a href="/messages/<%= message.id %>" class="small-button-syles">View</a>
+                            <a href="/messages/<%= message.id %>" class=""><button class="small-button-syles">View</button></a>
                             </form>
                             <form method="POST" action="/delete/<%= message.id %>"> 
                                 <button class="small-button-syles">delete</button>
