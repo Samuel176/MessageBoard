@@ -1,0 +1,48 @@
+<%- include("partials/header.ejs") %>
+<div class="container-fluid">
+
+        <div class="message-screen-div">
+            <div class="message-screen-text-area">
+                <li class="message-item">
+                    <div>
+                        <div class="message-screen-orginal-message-box">
+                            <p class="message-user-name"><strong><%= message.user %></strong> </p>
+                             <p class="message-subject-name">Subject: <%= message.subject %></p>
+                         </div>
+                         <div class="message-screen-post-comment">
+                            <p class="message-message-text"><%= message.text %></p>
+                        </div>
+                    </div>
+                </li>
+                    
+         </div>
+         <div class="">
+            <h2>Comments</h2>
+            <ul class="message-screen-comment-list">
+                <% comments
+                .filter(comment => comment.messageId === message.id)
+                .forEach(comment => { %>
+                <li class="comment-item">
+                    <p class="comment-user"><strong> <%= comment.user %> :</strong></p>
+                    <p class="comment-text"><strong></strong> <%= comment.text %></p>
+                    
+                </li>
+                <% }); %>
+            </ul>
+            <button class="small-button-syles" onclick="const form = document.getElementById('commentForm<%= message.id %>'); form.style.display = (form.style.display === 'none') ? 'none' : 'block' ;">Comment</button>
+            <div class="message-sceen-comment">
+                                    <form class="comment-form" id="commentForm<%= message.id %>" action="/comment/<%= message.id %>" method="POST">
+                                        <input class="message-input-box" type="text" name="userComment" placeholder="User Name">
+                                        <textarea class="message-text-box" name="textComment" placeholder="Your Comment"></textarea>
+                                        <button class="small-button-syles" type="submit">Submit</button>
+                                    </form>
+                                </div>
+            
+         </div>
+ 
+         </div>
+         
+</div>
+
+<%- include("partials/footer.ejs") %>
+<script src="/js/index.js"></script>
