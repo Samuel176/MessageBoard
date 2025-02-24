@@ -18,11 +18,10 @@ const messages = [
 const comments = [];
 const userName = [];
 const topics = [
-  "Israel, A Country Under Attack Or Genocidal Fascist ",
-  "Rapists? Should They Be President?",
+  "Criminals? Should They Be President?",
   "War in Ukraine?",
   "Abortion Up To 1095 Weeks?",
-  "Homeless? Let Them Live?",
+  "The Enviroment. Is it dying or just not trying hard enough",
   "Immigrants, Should They Just Go Home?",
   "The Church, A Force For Good Or A Bunch Of Nonces"
 ];
@@ -49,6 +48,11 @@ function generateUserName(){
 function generateCommentID(){
   return comments.length;
 };
+
+// view posts page
+app.get("/posts", (req, res) =>{
+  res.render(__dirname + "/views/posts.ejs", { messages: messages, comments: comments, userName: userName, randomTopic });
+})
 
 // view message
 app.get("/messages/:id", (req, res) => {
