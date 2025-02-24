@@ -3,6 +3,9 @@ body{
     text-align: center;
     font-family: "Noto Sans", sans-serif;
 }
+.container-fluid{
+    width: 95%;
+}
 .row{
     width: 100%;
 }
@@ -39,16 +42,20 @@ body{
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #fff4f9;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .nav-bar-item {
-    float: left;
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
 }
 
 .nav-bar-item a {
     display: block;
-    color: white;
+    color: rgb(0, 0, 0);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -69,12 +76,36 @@ body{
 }
 
 .nav-bar-item a:hover {
-    background-color: pink; 
+    background-color: pink;
+    color: white; 
 }
 
 .nav-bar-item a:hover::after {
     width: 100%; 
 }
+
+/* nav bar drop down */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
 
 
 .form-container{
@@ -168,7 +199,12 @@ body{
     background-color: #469bab;
     font-weight: 600;
     color: #FFFDF9;
+    border-radius: 5px;
+    transition: 0.3s;
+    margin-top: 10px;
+    
 }
+
 .small-button-syles{
     font-size: 0.8rem;
     padding: 4px 10px;
@@ -178,6 +214,7 @@ body{
     font-weight: 600;
     color: #FFFDF9;
     width: 5rem;
+    transition: 0.3s;
 }
 .small-button-syles-edit{
     margin-top: 20px;
@@ -189,6 +226,7 @@ body{
     font-weight: 600;
     color: #FFFDF9;
     width: 5rem;
+    transition: 0.3s;
 }
 .button-container{
     display: flex;
@@ -200,6 +238,15 @@ body{
 
 .button-syles:hover{
     background-color: pink;
+    transform: translateY(-5px);
+}
+.small-button-syles:hover{
+    background-color: pink;
+    transform: translateY(-5px);
+}
+.small-button-syles-edit:hover{
+    background-color: pink;
+    transform: translateY(-5px);
 }
 /* for hidden edit options */
 .edit-hidden{
@@ -263,6 +310,14 @@ body{
     margin-top: 50px;
 }
 
+.footer{
+    padding-top: 3rem;
+}
+@media screen and (max-width: 1024px){
+    .container-fluid{
+        width: 100%;
+    }
+}
 @media only screen and (max-width: 767px){
     .form-container{
         box-shadow: 0px 0px 0px 0px transparent;
@@ -274,6 +329,10 @@ body{
         align-items: center;
         padding-bottom: 10px;
     }
+    .nav-bar-item {
+        padding-right: 0.8rem;
+        padding-left: 0.8rem;
+    }
 }
 
 
@@ -281,6 +340,7 @@ body{
 
 input:focus-visible{
     outline: 2px solid rgb(255, 129, 198) !important;
+    
 }
 textarea:focus-visible{
     outline: 2px solid rgb(255, 129, 198) !important;
