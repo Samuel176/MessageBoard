@@ -1,0 +1,22 @@
+<%- include("partials/header.ejs") %>
+    <div class="contactForm-container">
+        <form action="/submit-contact" method="POST" class="formControl">
+            <div class="form-group">
+                <label class="form-label" for="name"></label>
+                <input type="text" id="name" name="name" class="form-controller" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="email"></label>
+                <input type="email" id="email" name="email" class="form-controller" placeholder="Email" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="comment"></label>
+                <textarea id="comment" name="comment" class="form-controller" rows="4" placeholder="Comment" required></textarea>
+            </div>
+
+            <button type="submit" class="button-syles contact-button">Submit</button>
+        </form>
+    </div>    
+<%- include("partials/footer.ejs") %>
+<script src="/js/index.js"></script>

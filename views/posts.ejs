@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-md-5">
                         <ul>
-                            <h4>Comments</h4>
+                            <h4>Latest Comments</h4>
                             <% comments
                             .filter(comment => comment.messageId === message.id)
                             .slice(0,2)
@@ -45,16 +45,8 @@
                             </div>
                     </div>
                         <div class="col-md-12 col-sm-12 button-container">
-                        <!-- delete form, comment, edit button  -->
-                        <!-- <button class="small-button-syles" onclick="const form = document.getElementById('commentForm<%= message.id %>'); form.style.display = (form.style.display === 'none') ? 'none' : 'block';">Comment</button>-->
-                        <button class="small-button-syles" onclick="const form = document.getElementById('editForm<%= message.id %>'); form.style.display = (form.style.display === 'none') ? 'none' : 'block';">Edit</button>
-                        
-                        <a href="/messages/<%= message.id %>" class=""><button class="small-button-syles">View</button></a>
-                        </form>
-                        <form method="POST" action="/delete/<%= message.id %>"> 
-                            <button class="small-button-syles">Delete</button>
-                            
-                        </form>
+                            <a href="/messages/<%= message.id %>" class=""><button class="small-button-syles">View</button></a>
+                       
                         </div>
                         <hr>
                     </li>

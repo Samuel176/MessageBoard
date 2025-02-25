@@ -2,6 +2,7 @@ import express from "express";
 import {dirname} from "path";
 import{fileURLToPath} from "url";
 import bodyParser from "body-parser";
+import nodemailer from "nodemailer";
 
 const app = express();
 const port = 3000;
@@ -49,9 +50,13 @@ function generateCommentID(){
   return comments.length;
 };
 
-// view posts page
+// view posts page navbar
 app.get("/posts", (req, res) =>{
   res.render(__dirname + "/views/posts.ejs", { messages: messages, comments: comments, userName: userName, randomTopic });
+})
+// view contact navbar
+app.get("/contact", (req, res) =>{
+  res.render(__dirname + "/views/contact.ejs");
 })
 
 // view message
@@ -136,6 +141,36 @@ app.post("/commentDelete/:id", (req, res) =>{
   const indexToRemove = comments.findIndex(comment => comment.id === idToRemove);
   comments.splice(indexToRemove, 1);
   res.redirect("/");
+});
+
+app.post("/submit-contact", (req, res) =>{
+  const{ name, email, comment} = req.body;
+
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.ethereal.email',
+    port: 587,
+    auth: {
+        user: 'adell4@ethereal.email',
+        pass: 'uuQUK3W9ez4Wu6HRry'
+    }
+});
+  let mailOptions = {
+    from: email,
+    to: 'adell4@ethereal.email',
+    subject: 'New Contact Form Submission',
+    text: `Name: ${name}\nEmail: ${email}\n\nComment: ${comment}`
+
+  }
+
+  transporter.sendMail(mailOptions, (err, info) =>{
+    if(err){
+      console.log(err)
+      res.send('sending error');
+    }else{
+          console.log('Message sent: ' + info.response);
+          res.json({ success: true, message: 'Form submitted successfully!' });
+    }
+  });
 });
 
 app.listen(port, () => {

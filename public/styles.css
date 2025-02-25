@@ -1,5 +1,5 @@
 body{
-    background-color: #FFF4F9;
+    background-color: #fdf7fa;
     text-align: center;
     font-family: "Noto Sans", sans-serif;
 }
@@ -42,7 +42,7 @@ body{
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #fff4f9;
+    background-color: #fdf7fa;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -121,6 +121,19 @@ body{
 .message-board-list{
     padding: 0px !important;
 }
+.form-controller{
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: transparent;
+    background-clip: padding-box;
+    border: none;
+    border-bottom: solid 1px;
+    
+}
 
 /* message syles */
 .user-name{
@@ -189,7 +202,6 @@ body{
     background: transparent;
 }
 
-
 /* button syles */
 .button-syles{
     font-size: 1.1rem;
@@ -215,6 +227,7 @@ body{
     color: #FFFDF9;
     width: 5rem;
     transition: 0.3s;
+    margin: 1rem;
 }
 .small-button-syles-edit{
     margin-top: 20px;
@@ -260,9 +273,13 @@ body{
     margin-bottom: 10px;
     box-shadow: -3px 4px 8px 1px #b3a4a9ab;
     padding: 5px;
+    margin: 1rem 1rem 1rem 0;
+    width: 70%;
 }
 .comment-form{
     display: none;
+    padding-top: 2rem;
+    margin: 1rem;
 }
 .comment-user{
     margin: 0px;
@@ -275,7 +292,7 @@ body{
 /* message view page */
 .message-sceen-comment{
     display: flex;
-    justify-content: center;
+    justify-content: left;
 
 }
 
@@ -289,9 +306,17 @@ body{
     font-size: 1.1rem;
 }
 
+.message-comments-section{
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-reply-button{
+    width: 8rem;
+}
 .message-screen-comment-list{
-    padding-right: 15px;
-    padding-left: 15px;
+    padding: 0;
 }
 .message-screen-orginal-message-box{
     float: left;
@@ -309,6 +334,33 @@ body{
 .message-screen-div{
     margin-top: 50px;
 }
+.message-comment-button-submit{
+    float:left
+}
+.message-comment-heading{
+    padding: 2rem 0;
+    text-align: left;
+}
+/* contact page */
+.contactForm-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5rem;
+}
+/* .form-group{
+    padding: 1rem;
+} */
+.formControl{
+    width: 50%;
+}
+.form-label{
+    padding: 1.2rem;
+}
+.contact-button{
+    margin-top: 3rem;
+    width: 50%;
+}
 
 .footer{
     padding-top: 3rem;
@@ -317,11 +369,22 @@ body{
     .container-fluid{
         width: 100%;
     }
+    .formControl{
+        width: 65%;
+    }
+    .contact-button{
+        width: 55%;
+    }
+    .comment-item{
+       width: 80%;
+    }
+    .message-comments-section{
+        padding-top: 3rem;
+    }
 }
 @media only screen and (max-width: 767px){
     .form-container{
         box-shadow: 0px 0px 0px 0px transparent;
-        
     }
     .button-container{
         display: flex;
@@ -333,17 +396,26 @@ body{
         padding-right: 0.8rem;
         padding-left: 0.8rem;
     }
+    .formControl{
+        width: 80%;
+    }
+    .contact-button{
+        width: 65%;
+    }
+    
 }
 
 
 
 
 input:focus-visible{
-    outline: 2px solid rgb(255, 129, 198) !important;
+    outline: none;
+    border-bottom: 2px solid rgb(255, 129, 198) !important;
     
 }
 textarea:focus-visible{
-    outline: 2px solid rgb(255, 129, 198) !important;
+    outline: none;
+    border-bottom: 2px solid rgb(255, 129, 198) !important;
 }
 /* #message-form{
     display: none;
