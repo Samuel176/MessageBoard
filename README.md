@@ -15,7 +15,6 @@ Upcoming Features
 
 1.Ability to post images
 2.Like and dislike functionality
-3.Navigation bar (NavBar)
 
 How to Run
 
