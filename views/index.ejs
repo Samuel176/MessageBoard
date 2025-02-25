@@ -1,7 +1,7 @@
 <%- include("partials/header.ejs") %>
 <div class="container-fluid">
     <div class="title-section">
-        <h1 class="title">Sam's Controversial Message Board</h1>
+        <h1 class="title">Sam's Message Board</h1>
     </div>
     <div class="container-fluid">
         <div class="row row-div">
@@ -13,7 +13,7 @@
                         <div class="form-group">
                         <input class="message-input-box" type="text" name="user" placeholder="User Name">
                         <input class="message-input-box" type="text" name="subject" placeholder="Subject">
-                        <textarea class="message-text-box" type="text" name="text" placeholder="Your Message" cols="50" rows="4"></textarea>
+                        <textarea class="message-text-box" type="text" name="text" placeholder="Message" cols="50" rows="4"></textarea>
                         <input class="button-syles" type="submit" value="Submit">
                         </div>
                     </form>
@@ -32,8 +32,9 @@
             <ul class="message-board-list">
                 <% messages.forEach(message => { %>
                     <div class="row">
-                        <div class="col-md-7 col-sm-12 text-area">
-                            <li class="message-item">
+                        <a href="/messages/<%= message.id %>" class="message-link-a-tag">
+                            <div class="col-md-8 col-sm-12 text-area">
+                            <li class="message-item clickable-text-are">
                                 <p class="user-name"><%= message.user %>  </p>
                                 <p class="subject-name">Subject: <%= message.subject %></p>
                                 <p class="message-text"><%= message.text %></p>
@@ -47,9 +48,8 @@
                                 </form>
                                 <!-- co -->
                                 </div>
-                                
-                        </div>
-                        <div class="col-md-5">
+                            </div></a>
+                        <div class="col-md-4">
                             <ul>
                                 <h4>Latest Comments</h4>
                                 <% comments
@@ -76,7 +76,7 @@
                             <!-- <button class="small-button-syles" onclick="const form = document.getElementById('commentForm<%= message.id %>'); form.style.display = (form.style.display === 'none') ? 'none' : 'block';">Comment</button>-->
                             <button class="small-button-syles" onclick="const form = document.getElementById('editForm<%= message.id %>'); form.style.display = (form.style.display === 'none') ? 'none' : 'block';">Edit</button>
                             
-                            <a href="/messages/<%= message.id %>" class=""><button class="small-button-syles">View</button></a>
+
                             </form>
                             <form method="POST" action="/delete/<%= message.id %>"> 
                                 <button class="small-button-syles">Delete</button>

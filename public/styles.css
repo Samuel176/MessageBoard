@@ -3,8 +3,13 @@ body{
     text-align: center;
     font-family: "Noto Sans", sans-serif;
 }
+.message-link-a-tag{
+    text-decoration: none;
+    color: black;
+    display: contents;
+}
 .container-fluid{
-    width: 95%;
+    width: 85%;
 }
 .row{
     width: 100%;
@@ -29,6 +34,7 @@ body{
 }
 
 .topic-container{
+    margin-top: 3rem;
     margin-right: 10px;
     margin-left: 10px;
     background-color: #f9e6ed;
@@ -147,6 +153,7 @@ body{
     font-size: 20px;
     font-weight: 700;
     margin: 0;
+    padding: 1rem 0;
 }
 .message-text{
     text-align: left;
@@ -156,11 +163,11 @@ body{
     margin: 0px 10px;
     list-style-type: none;
     margin: 0px 10px;
-    background: #f9e6ed;
+    background: #faeff3;
     box-shadow: -4px 4px 8px 1px #b3a4a924;
     padding: 10px;
     margin-bottom: 20px;
-    border-radius: 25px;
+    border-radius: 20px;
 }
 
 .message-text-box{
@@ -274,7 +281,7 @@ body{
     box-shadow: -3px 4px 8px 1px #b3a4a9ab;
     padding: 5px;
     margin: 1rem 1rem 1rem 0;
-    width: 70%;
+    width: 100%;
 }
 .comment-form{
     display: none;
@@ -341,6 +348,16 @@ body{
     padding: 2rem 0;
     text-align: left;
 }
+.message-comment-item{
+    list-style-type: none;
+    text-align: left;
+    background: #efefef;
+    margin-bottom: 10px;
+    box-shadow: -3px 4px 8px 1px #b3a4a9ab;
+    padding: 5px;
+    margin: 1rem 1rem 1rem 0;
+    width: 70%;
+}
 /* contact page */
 .contactForm-container{
     display: flex;
@@ -361,6 +378,9 @@ body{
     margin-top: 3rem;
     width: 50%;
 }
+.contact-heading-container{
+    padding-top: 5rem;
+}
 
 .footer{
     padding-top: 3rem;
@@ -375,7 +395,7 @@ body{
     .contact-button{
         width: 55%;
     }
-    .comment-item{
+    .message-comment-item{
        width: 80%;
     }
     .message-comments-section{
@@ -404,10 +424,9 @@ body{
     }
     
 }
-
-
-
-
+.clickable-text-are:hover{
+    background-color: #f9e6ed;
+}
 input:focus-visible{
     outline: none;
     border-bottom: 2px solid rgb(255, 129, 198) !important;
@@ -417,7 +436,5 @@ textarea:focus-visible{
     outline: none;
     border-bottom: 2px solid rgb(255, 129, 198) !important;
 }
-/* #message-form{
-    display: none;
-} */
+
 

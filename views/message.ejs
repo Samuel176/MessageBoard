@@ -21,10 +21,9 @@
                 <% comments
                 .filter(comment => comment.messageId === message.id)
                 .forEach(comment => { %>
-                <li class="comment-item">
+                <li class="message-comment-item"><a href="/messages/<%= message.id %>" class="message-link-a-tag"></a>
                     <p class="comment-user"><strong> <%= comment.user %> :</strong></p>
                     <p class="comment-text"><strong></strong> <%= comment.text %></p>
-                    
                 </li>
                 <% }); %>
             </ul>

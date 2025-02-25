@@ -4,9 +4,10 @@
         <h2 class="post-title">Posts</h2>
         <ul class="message-board-list">
             <% messages.forEach(message => { %>
-                <div class="row">
-                    <div class="col-md-7 col-sm-12 text-area">
-                        <li class="message-item">
+                <div class="row" class="">
+                <a href="/messages/<%= message.id %>" class="message-link-a-tag">
+                    <div class="col-md-8 col-sm-12 text-area ">
+                        <li class="message-item clickable-text-are">
                             <p class="user-name"><%= message.user %>  </p>
                             <p class="subject-name">Subject: <%= message.subject %></p>
                             <p class="message-text"><%= message.text %></p>
@@ -21,8 +22,8 @@
                             <!-- co -->
                             </div>
                             
-                    </div>
-                    <div class="col-md-5">
+                    </div></a>
+                    <div class="col-md-4">
                         <ul>
                             <h4>Latest Comments</h4>
                             <% comments
@@ -44,10 +45,6 @@
                                 </form>
                             </div>
                     </div>
-                        <div class="col-md-12 col-sm-12 button-container">
-                            <a href="/messages/<%= message.id %>" class=""><button class="small-button-syles">View</button></a>
-                       
-                        </div>
                         <hr>
                     </li>
                 </div>
