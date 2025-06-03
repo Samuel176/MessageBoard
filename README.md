@@ -39,7 +39,3 @@ EJS
 Contributing
 
 Feel free to fork this repository and submit pull requests. Suggestions for improvements are always welcome!
-
-License
-
-This project is licensed under the MIT License.
