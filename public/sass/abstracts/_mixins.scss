@@ -1,0 +1,11 @@
+@mixin border-shadow-light{
+box-shadow: -1px 1px 5px 1px rgba(64,64,64,0.09);
+-webkit-box-shadow: -1px 1px 5px 1px rgba(64,64,64,0.09);
+-moz-box-shadow: -1px 1px 5px 1px rgba(64,64,64,0.09);
+}
+
+@mixin border-nav{
+    border-style: solid;
+    border-width: 10px;
+    border-image: linear-gradient(90deg, rgb(255, 255, 255), rgb(0, 0, 0)) 1;
+}

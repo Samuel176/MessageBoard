@@ -1,44 +1,58 @@
 <%- include("partials/header.ejs") %>
-<div class="container-fluid">
-    <div class="message-screen-div">
-        <div class="message-screen-text-area">
-            <li class="message-item">
-                <div>
-                    <div class="message-screen-orginal-message-box">
-                        <p class="message-user-name"><strong><%= message.user %></strong> </p>
-                        <p class="message-subject-name">Subject: <%= message.subject %></p>
-                    </div>
-                    <div class="message-screen-post-comment">
-                        <p class="message-message-text"><%= message.text %></p>
-                    </div>
-                </div>
-            </li>           
-        </div>
-        <div class="message-comments-section">
-            <button class="button-syles message-reply-button" onclick="const form = document.getElementById('commentForm<%= message.id %>'); form.style.display = (form.style.display === 'none') ? 'none' : 'block' ;">Reply</button>
-            <h2 class="message-comment-heading">Comments</h2>
-            <ul class="message-screen-comment-list">
-                <% comments
-                .filter(comment => comment.messageId === message.id)
-                .forEach(comment => { %>
-                <li class="message-comment-item"><a href="/messages/<%= message.id %>" class="message-link-a-tag"></a>
-                    <p class="comment-user"><strong> <%= comment.user %> :</strong></p>
-                    <p class="comment-text"><strong></strong> <%= comment.text %></p>
-                </li>
-                <% }); %>
-            </ul>
-            
-            <div class="message-sceen-comment">
-                <form class="comment-form" id="commentForm<%= message.id %>" action="/comment/<%= message.id %>" method="POST">
-                    <input class="message-input-box" type="text" name="userComment" placeholder="User Name">
-                        <textarea class="message-text-box" name="textComment" placeholder="Your Comment"></textarea>
-                        <button class="small-button-syles message-comment-button-submit" type="submit">Submit</button>
+<div class="">
+    <div class="message-post">
+                <form method="POST" action="/delete/<%= message.id %>"> 
+                            <button class="delete-button">
+                                <span class="delete-button__icon-1"></span>
+                                <span class="delete-button__icon-2"></span>
+                            </button>  
                 </form>
+                <a href="/messages/<%= message.id %>" class="post__link">
+                            <li class="post__item">
+                                <img class="post__item-user-image" src="/images/no-user.jpg" alt="">
+                                <p class="post__item-user-name"><%= message.user %>  </p>
+                                <p class="post__item-subject-name">Subject: <%= message.subject %></p>
+                                <p class="post__item-message-text"><%= message.text %></p>
+                
+                            </li>
+                </a>
+                <div class="">
+                            <ul>
+                                <h4 class="heading-four">Latest Comments</h4>
+                                <% comments
+                                .filter(comment => comment.messageId === message.id)
+                                .forEach(comment => { %>
+                                <li class="comment-item">
+                                    <form method="POST" action="/commentDelete/<%= message.id %>"> 
+                                        <button class="comment-delete-button">
+                                            <span class="comment-delete-button__icon-1"></span>
+                                            <span class="comment-delete-button__icon-2"></span>
+                                        </button>  
+                                    </form>
+                                    <img class="comment-item__user-image-small" src="/images/no-user.jpg" alt="">
+                                    <p class="comment-item__user"><%= comment.user %></p>
+                                    <p class="comment-item__text"><%= comment.text %></p>
+                                    
+                                </li>
+                                <% }); %>
+                            </ul>
+                                <div>
+                                    <form class="comment-form" id="commentForm<%= message.id %>" action="/comment/<%= message.id %>" method="POST">
+                                        <!-- <input class="comment-form_input" type="text" name="userComment" placeholder="User Name"> -->
+                                        <textarea class="comment-form__text" name="textComment" placeholder="Your Comment" maxlength="300"></textarea>
+                                        <button class="small-button" type="submit">Submit</button>
+                                    </form>
+                                </div>
+                </div>
+                        <!-- <div class="col-md-12 col-sm-12 button-container">
+                            delete form, comment, edit button  
+                            <button class="small-button" onclick="const form = document.getElementById('commentForm<%= message.id %>'); form.style.display = (form.style.display === 'none') ? 'none' : 'block';">Comment</button>
+                            <button class="small-button" onclick="const form = document.getElementById('editForm<%= message.id %>'); form.style.display = (form.style.display === 'none') ? 'none' : 'block';">Edit</button>
+                            
+                                </div> -->  
+                    </form>
+                </li>
             </div>
-            
-         </div>
- 
-         </div>
          
 </div>
 

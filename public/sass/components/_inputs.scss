@@ -1,0 +1,49 @@
+@use"../abstracts/variables" as *;
+
+input, textarea {
+    border: none;
+    
+    &:focus-visible{
+        outline: none;
+    }
+}
+
+.message-post-home{
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    transition: 2s;
+ 
+
+    &__input{
+        border-bottom: 2px solid;
+        transition: 0.1s;
+        padding: 1rem;
+        font-size: 1.5rem;
+        transform-origin: left;
+        background-color: transparent;
+        
+
+        &:focus{
+            border-bottom: 2px solid $color-yellow-red;
+        }
+    }
+
+    
+
+    &__input-text{
+        border-bottom: 2px solid;
+        padding: 1rem;
+        font-size: 1.5rem;
+        background-color: transparent;
+
+
+        &:focus{
+            border-bottom: 2px solid $color-yellow-red;
+        }
+    }
+    
+    
+
+}
+
