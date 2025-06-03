@@ -1,0 +1,71 @@
+@use"../abstracts/variables" as *;
+@use"../abstracts/mixins" as *;
+
+
+.post{
+    max-width: 1024px;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    @include border-shadow-light;
+    position: relative;
+
+    &__item{
+    
+        font-size: 2rem;
+        list-style: none;
+
+        &-message-text{
+            font-size: 2.5rem;
+            padding-left: 4rem;
+            word-wrap: break-word;
+        }
+
+        > p {
+            margin: 0;
+            margin-bottom: 1rem;
+        }
+
+        &-user-image{
+            width: 25px;
+            border-radius: 50%;
+            border: 1px solid black;
+            float: left;
+            margin: 0 1rem;
+            
+            &-small{
+                width: 20px;
+            }
+        }
+    }
+
+    &__link{
+        text-decoration: none;
+    }
+}
+
+
+
+.post-edit{
+    position: absolute;
+    top: 0;
+    right: 4rem;
+    height: 25rem;
+    transition: all .2s;
+    
+    
+    &__form{
+    display: none;
+    flex-direction: column;
+    background-color: #01277730;
+    height: 50%;
+    justify-content: space-evenly;
+    padding: 1rem;
+    }
+
+    &__textbox{
+        width: 50rem;
+        height: 10rem;
+        margin: .5rem 0;
+    }
+}

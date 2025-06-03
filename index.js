@@ -2,7 +2,6 @@ import express from "express";
 import {dirname} from "path";
 import{fileURLToPath} from "url";
 import bodyParser from "body-parser";
-import nodemailer from "nodemailer";
 
 const app = express();
 const port = 3000;
@@ -13,6 +12,12 @@ const messages = [
   id: 1795,
   user: 'UserName1 ',
   subject: 'test 1 ',
+  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+},
+{
+  id: 2341,
+  user: 'testname ',
+  subject: "What's the worst hotel in the UK you've ever stayed in?",
   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 }
 ];
@@ -54,6 +59,7 @@ function generateCommentID(){
 app.get("/posts", (req, res) =>{
   res.render(__dirname + "/views/posts.ejs", { messages: messages, comments: comments, userName: userName, randomTopic });
 })
+
 // view contact navbar
 app.get("/contact", (req, res) =>{
   res.render(__dirname + "/views/contact.ejs");
@@ -108,8 +114,6 @@ app.post("/comment/:id", (req, res) => {
   }
 });
 
-
-
 // edit post
 app.post("/edit/:id", (req, res) =>{
   const idToEdit = parseInt(req.params.id);
@@ -135,42 +139,12 @@ app.post("/delete/:id", (req, res) =>{
   messages.splice(indexToRemove, 1);
   res.redirect("/");
 });
-// comment delete. yet to be implamented
+// comment delete
 app.post("/commentDelete/:id", (req, res) =>{
   const idToRemove = parseInt(req.params.id);
   const indexToRemove = comments.findIndex(comment => comment.id === idToRemove);
   comments.splice(indexToRemove, 1);
-  res.redirect("/");
-});
-
-app.post("/submit-contact", (req, res) =>{
-  const{ name, email, comment} = req.body;
-
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
-    auth: {
-        user: 'adell4@ethereal.email',
-        pass: 'uuQUK3W9ez4Wu6HRry'
-    }
-});
-  let mailOptions = {
-    from: email,
-    to: 'adell4@ethereal.email',
-    subject: 'New Contact Form Submission',
-    text: `Name: ${name}\nEmail: ${email}\n\nComment: ${comment}`
-
-  }
-
-  transporter.sendMail(mailOptions, (err, info) =>{
-    if(err){
-      console.log(err)
-      res.send('sending error');
-    }else{
-          console.log('Message sent: ' + info.response);
-          res.json({ success: true, message: 'Form submitted successfully!' });
-    }
-  });
+  res.redirect('back');
 });
 
 app.listen(port, () => {

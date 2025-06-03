@@ -1,0 +1,40 @@
+@use"../abstracts/variables" as *;
+
+*{
+    font-family: "lato";
+}
+
+
+h4,
+h5,
+h6,
+p{
+    color: $color-black;
+}
+
+
+.heading-primary{
+    font-size: 5rem;
+    background: linear-gradient(180deg,rgba(0, 46, 145, 1) 0%, rgba(0, 23, 71, 1) 100%);
+    background-clip: text;
+    color: transparent;
+}
+.heading-secondary{
+    font-size: 3rem;
+    background: linear-gradient(180deg,rgba(0, 46, 145, 1) 0%, rgba(0, 23, 71, 1) 100%);
+    background-clip: text;
+    color: transparent;
+}
+
+
+.heading-tertiary{
+    font-size: 2rem;
+    background: linear-gradient(180deg,rgba(0, 46, 145, 1) 0%, rgba(0, 23, 71, 1) 100%);
+    background-clip: text;
+    color: transparent;
+}
+
+.heading-four{
+    font-size: 2rem;
+    margin: .5rem;
+}

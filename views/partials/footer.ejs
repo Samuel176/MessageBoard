@@ -1,3 +1,11 @@
 <div class="footer">
     <p class="copy-right-footer">Copyright © <%= new Date().getFullYear() %> </p>
 </div>
+<script>
+  function toggleForm(id) {
+    const form = document.getElementById(`editForm${id}`);
+    if (form) {
+      form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'flex' : 'none';
+    }
+  }
+</script>

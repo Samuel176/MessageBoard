@@ -1,0 +1,144 @@
+@use"../abstracts/variables" as *;
+@use"../abstracts/mixins" as *;
+
+.nav{
+    top: 0px;
+    background-color: $color-white;
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px solid black;
+    position: fixed;
+    right: 0;
+    
+
+    &__list{
+        display: flex;
+        justify-content: space-evenly;
+        padding: 0;
+        margin: auto;
+    }
+
+    &__item{
+        font-size: 2rem;
+        
+        a{
+            color: $color-blue-primary;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 2s;
+        
+        }
+        &::after{
+            display: block;
+            content: "";
+            border-bottom: 5px solid $color-blue-primary;
+            transform: scaleX(0);
+            transition: transform 250ms ease-in-out;
+            transform-origin: 0% 50%;
+            }
+           
+        &:hover::after{
+            transform: scaleX(1);
+            
+        }
+    }
+}
+
+.message {
+    position: fixed;
+    background-color: $color-blue-primary;
+    width: 2rem;
+    height: 6rem;
+    border: 1px solid $color-black;
+    top: 6rem;
+    right: 6rem;
+    z-index: 10000;
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.52);
+    
+
+    &__message-post{
+    opacity: 0;
+    position: absolute;
+    right: -32.2rem;
+    top: -1px;
+    background-color: $color-light-grey;
+    border-radius: 2px;
+    text-align: center;
+    border: 1px solid;
+    padding: 1rem;
+    transition: opacity 0.4s ease, right 0.4s ease;
+    pointer-events: none;
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.52);
+        
+    }
+
+    &__checkbox {
+        display: none;
+    }  
+
+    &::after{
+        content: '';
+        
+        display: block;
+        position: absolute;
+        left: 5rem;
+        top: 5rem;
+    }
+
+    &__label {
+        display: block;
+        cursor: pointer;
+    }
+
+    &__icon-1,
+    &__icon-2 {
+        position: relative;
+        width: 2rem;
+        height: 2px;
+        background-color: $color-light-grey-1;
+        display: inline-block;
+        transition: .1s;
+    }
+
+    &__icon-1 {
+        margin-top: 2.4rem;
+        transform: rotate(-40deg);
+    }
+
+    &__icon-2 {
+        transform: rotate(40deg);
+    }
+
+    &__checkbox:checked + &__label &__icon-1 {
+        transform: rotate(40deg);
+    }
+
+    &__checkbox:checked + &__label &__icon-2 {
+        transform: rotate(-40deg);
+    }
+    &__checkbox:checked ~ &__message-post {
+    opacity: 1;
+    right: 2rem;
+    pointer-events: auto;
+}
+
+    
+}
+@keyframes messageBox{
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    60%{
+        opacity: 0.4;
+    }
+    100%{
+        opacity: 1;
+        top: -1px;
+        right: 2rem;
+    }
+}
+
+

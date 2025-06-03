@@ -1,0 +1,26 @@
+*,
+*::after
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  
+}
+
+html{
+    font-size: 62.5%; 
+    // 1 rem = 10px; 10/16 = 62.5
+
+}
+
+body{
+    margin: 0rem 6rem;
+}
+
+
+ul{
+    padding: 0;
+}
+li{
+    list-style: none;
+}
