@@ -1,57 +1,73 @@
 <%- include("partials/header.ejs") %>
-<div class="container-fluid">
-    <div class="message-board-container col-md-12">
-        <h2 class="post-title">Posts</h2>
+<div class="">
+    <div class="message-board-page">
+        <h2 class="heading-secondary">Posts</h2>
         <ul class="message-board-list">
             <% messages.forEach(message => { %>
-                <div class="row" class="">
-                <a href="/messages/<%= message.id %>" class="message-link-a-tag">
-                    <div class="col-md-8 col-sm-12 text-area ">
-                        <li class="message-item clickable-text-are">
-                            <p class="user-name"><%= message.user %>  </p>
-                            <p class="subject-name">Subject: <%= message.subject %></p>
-                            <p class="message-text"><%= message.text %></p>
-                            <div>
-                             <!-- edit form -->
-                            <form class="edit-hidden" id="editForm<%= message.id %>" action="/edit/<%= message.id %>" method="POST">
-                                <input  class="message-input-box-edit"type="text" name="userEdit" placeholder="<%= message.user %>">
-                                <input class="message-input-box-edit" type="text" name="subjectEdit" placeholder="<%= message.subject %>">
-                                <textarea class="message-text-box-edit" type="text" name="textEdit" placeholder="<%= message.text %>"></textarea>
-                                <input class="small-button-syles-edit" type="submit" value="Send">
+                <hr class="post__break">
+                    <div class="post">
+                        <div class="post-buttons">
+                            <form method="POST" action="/delete/<%= message.id %>"> 
+                                <button class="delete-button">
+                                    <span class="delete-button__icon-1"></span>
+                                    <span class="delete-button__icon-2"></span>
+                                </button>
                             </form>
-                            <!-- co -->
-                            </div>
-                            
-                    </div></a>
-                    <div class="col-md-4">
-                        <ul>
-                            <h4>Latest Comments</h4>
-                            <% comments
-                            .filter(comment => comment.messageId === message.id)
-                            .slice(0,2)
-                            .forEach(comment => { %>
-                            <li class="comment-item">
-                                <p class="comment-user"><strong> <%= comment.user %> :</strong></p>
-                                <p class="comment-text"><strong></strong> <%= comment.text %></p>
-                                
+                                <button class="edit-button" onclick="toggleForm('<%= message.id %>')">
+                                    <span class="edit-button__icon">&#9998;</span>
+                                </button>
+                        </div>
+                        <a href="/messages/<%= message.id %>" class="post__link">
+                            <li class="post__item">
+                                <img class="post__item-user-image" src="/images/no-user.jpg" alt="">
+                                <p class="post__item-user-name"><%= message.user %>  </p>
+                                <p class="post__item-subject-name">      <%= message.subject %></p>
+                                <p class="post__item-message-text"><%= message.text %></p>
                             </li>
-                            <% }); %>
-                        </ul>
-                            <div>
-                                <form class="comment-form" id="commentForm<%= message.id %>" action="/comment/<%= message.id %>" method="POST">
-                                    <input class="message-input-box" type="text" name="userComment" placeholder="User Name">
-                                    <textarea class="message-text-box" name="textComment" placeholder="Your Comment"></textarea>
-                                    <button class="small-button-syles" type="submit">Submit</button>
-                                </form>
-                            </div>
-                    </div>
-                        <hr>
+                        </a>
+                    <div class="">
+                            <ul>
+                                <h4>Latest Comments</h4>
+                                <% comments
+                                .filter(comment => comment.messageId === message.id)
+                                .slice(0,2)
+                                .forEach(comment => { %>
+                                <li class="comment-item">
+                                    <form method="POST" action="/commentDelete/<%= message.id %>"> 
+                                        <button class="comment-delete-button">
+                                            <span class="comment-delete-button__icon-1"></span>
+                                            <span class="comment-delete-button__icon-2"></span>
+                                        </button>  
+                                    </form>
+                                    <img class="comment-item__user-image-small" src="/images/no-user.jpg" alt="">
+                                    <p class="comment-item__user"><%= comment.user %></p>
+                                    <p class="comment-item__text"><%= comment.text %></p>
+                                </li>
+                                <% }); %>
+                            </ul>
+
+                           <!-- <div class="like-button">
+                                <form action=""></form>
+                                <input type="submit" name="" id="">
+                                <p class="like-button__up">&#9754;</p>
+
+                                <p class="like-button__down">&#9754;</p>
+                            </div> -->
+                            
+                        </div>
                     </li>
+                    <div class="post-edit">
+                        <form class="post-edit__form" id="editForm<%= message.id %>" action="/edit/<%= message.id %>" method="POST">
+                            <textarea class="post-edit__input" role="textbox"  type="text" name="subjectEdit" oninput="grow(this)"><%= message.subject %></textarea>
+                            <textarea class="post-edit__textbox" role="textbox" type="text" name="textEdit" oninput="grow(this)"><%= message.text %></textarea>
+                            <input class="btn-large" type="submit" value="Send">
+                        </form>
+                    </div>
                 </div>
+                
             <% }); %>
         </ul>
     </div>
-
 </div>
 <%- include("partials/footer.ejs") %>
 <script src="/js/index.js"></script>
