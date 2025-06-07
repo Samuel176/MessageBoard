@@ -9,6 +9,7 @@
     border-bottom: 1px solid black;
     position: fixed;
     right: 0;
+    z-index: 1000;
     
 
     &__list{
@@ -46,30 +47,57 @@
 
 .message {
     position: fixed;
-    background-color: $color-blue-primary;
-    width: 2rem;
-    height: 6rem;
-    border: 1px solid $color-black;
-    top: 6rem;
-    right: 6rem;
-    z-index: 10000;
-    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.52);
+    right: 0rem;
+    top: 1rem;
+    z-index: 1000;
     
 
+    &__button{
+    position: absolute;
+    top: 6rem;
+    right: 6rem;
+    @include grey-gradiant;
+    border-radius: 4px;
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid $color-light-black;
+    z-index: 100;
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.52);
+    transition: right .4s;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            @include grey-gradiant-mirrored;
+            opacity: 0;
+            transition: opacity 1s;
+            z-index: 1;
+            }
+
+            &:hover::before {
+            opacity: 1
+            }
+    }
+
     &__message-post{
+    right: -26rem;
+    top: 6rem;
     opacity: 0;
     position: absolute;
-    right: -32.2rem;
-    top: -1px;
-    background-color: $color-light-grey;
-    border-radius: 2px;
-    text-align: center;
+    @include light-blue-gradiant-full;
+    border-radius: 4px;
     border: 1px solid;
     padding: 1rem;
+    text-align: center;
     transition: opacity 0.4s ease, right 0.4s ease;
     pointer-events: none;
     box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.52);
-        
+    backdrop-filter: blur(10px);
+    
     }
 
     &__checkbox {
@@ -95,13 +123,15 @@
         position: relative;
         width: 2rem;
         height: 2px;
-        background-color: $color-light-grey-1;
+        background-color: $color-light-black;
         display: inline-block;
-        transition: .1s;
+        transition: .5s;
+        margin-left: 1rem;
+        z-index: 10;
     }
 
     &__icon-1 {
-        margin-top: 2.4rem;
+        margin-top: 1.4rem;
         transform: rotate(-40deg);
     }
 
@@ -116,13 +146,18 @@
     &__checkbox:checked + &__label &__icon-2 {
         transform: rotate(-40deg);
     }
-    &__checkbox:checked ~ &__message-post {
-    opacity: 1;
-    right: 2rem;
-    pointer-events: auto;
-}
-
     
+    &__checkbox:checked ~ &__label &__message-post {
+    opacity: 1;
+    right: 4rem;
+    pointer-events: auto;
+    }
+    &__checkbox:checked ~ &__label &__button {
+    @include grey-gradiant-mirrored;
+    opacity: 1;
+    right: 32rem;
+    pointer-events: auto;
+    }
 }
 @keyframes messageBox{
     0%{

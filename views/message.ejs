@@ -1,6 +1,6 @@
 <%- include("partials/header.ejs") %>
 <div class="">
-    <div class="message-post">
+    <div class="message-post-page">
                 <form method="POST" action="/delete/<%= message.id %>"> 
                             <button class="delete-button">
                                 <span class="delete-button__icon-1"></span>
@@ -11,12 +11,19 @@
                             <li class="post__item">
                                 <img class="post__item-user-image" src="/images/no-user.jpg" alt="">
                                 <p class="post__item-user-name"><%= message.user %>  </p>
-                                <p class="post__item-subject-name">Subject: <%= message.subject %></p>
+                                <p class="post__item-subject-name">      <%= message.subject %></p>
                                 <p class="post__item-message-text"><%= message.text %></p>
                 
                             </li>
                 </a>
                 <div class="">
+                                <div>
+                                    <form class="comment-form" id="commentForm<%= message.id %>" action="/comment/<%= message.id %>" method="POST">
+                                        <!-- <input class="comment-form_input" type="text" name="userComment" placeholder="User Name"> -->
+                                        <textarea class="comment-form__text" name="textComment" placeholder="Your Comment" maxlength="300"></textarea>
+                                        <button class="small-button" type="submit">Submit</button>
+                                    </form>
+                                </div>
                             <ul>
                                 <h4 class="heading-four">Latest Comments</h4>
                                 <% comments
@@ -35,16 +42,9 @@
                                     
                                 </li>
                                 <% }); %>
-                            </ul>
-                                <div>
-                                    <form class="comment-form" id="commentForm<%= message.id %>" action="/comment/<%= message.id %>" method="POST">
-                                        <!-- <input class="comment-form_input" type="text" name="userComment" placeholder="User Name"> -->
-                                        <textarea class="comment-form__text" name="textComment" placeholder="Your Comment" maxlength="300"></textarea>
-                                        <button class="small-button" type="submit">Submit</button>
-                                    </form>
-                                </div>
+                            </ul>   
                 </div>
-                        <!-- <div class="col-md-12 col-sm-12 button-container">
+                        <!-- <div class="">
                             delete form, comment, edit button  
                             <button class="small-button" onclick="const form = document.getElementById('commentForm<%= message.id %>'); form.style.display = (form.style.display === 'none') ? 'none' : 'block';">Comment</button>
                             <button class="small-button" onclick="const form = document.getElementById('editForm<%= message.id %>'); form.style.display = (form.style.display === 'none') ? 'none' : 'block';">Edit</button>

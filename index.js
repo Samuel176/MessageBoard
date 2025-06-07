@@ -113,13 +113,12 @@ app.post("/comment/:id", (req, res) => {
     console.log("not found")
   }
 });
-
 // edit post
 app.post("/edit/:id", (req, res) =>{
   const idToEdit = parseInt(req.params.id);
   const indexToEdit = messages.findIndex(message => message.id === idToEdit);
   const originalMessage = messages[indexToEdit];
-  let user = req.body.userEdit || originalMessage.user;
+  let user = originalMessage.user;
   let subject = req.body.subjectEdit || originalMessage.subject;
   let text = req.body.textEdit || originalMessage.text;
   const newMessage = {

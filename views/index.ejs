@@ -6,11 +6,13 @@
                     <h3 class="heading-tertiary ">The Topic of the day is!</h3>
                     <h2 class="heading-secondary "><%=randomTopic %></h2>
             </div> 
-        </section>    
+        </section>   
+         
         <div class="message-board">
             <h2 class="heading-secondary">Posts</h2>
             <ul class="message-board__list">
                 <% messages.forEach(message => { %>
+                    <hr class="post__break">
                     <div class="post">
                         <div class="post-buttons">
                             <form method="POST" action="/delete/<%= message.id %>"> 
@@ -27,7 +29,7 @@
                             <li class="post__item">
                                 <img class="post__item-user-image" src="/images/no-user.jpg" alt="">
                                 <p class="post__item-user-name"><%= message.user %>  </p>
-                                <p class="post__item-subject-name">Subject: <%= message.subject %></p>
+                                <p class="post__item-subject-name">      <%= message.subject %></p>
                                 <p class="post__item-message-text"><%= message.text %></p>
                                  
                             </li>
@@ -52,18 +54,27 @@
                                 </li>
                                 <% }); %>
                             </ul>
+
+                          <!--  <div class="like-button">
+                                <form action=""></form>
+                                <input type="submit" name="" id="">
+                                <p class="like-button__up">&#9754;</p>
+
+                                <p class="like-button__down">&#9754;</p>
+                            </div> -->
                             
                         </div>
                             <div id="">
                                 <div class="post-edit">
                                     <form class="post-edit__form" id="editForm<%= message.id %>" action="/edit/<%= message.id %>" method="POST">
-                                        <input class="post-edit__input" type="text" name="subjectEdit" placeholder="<%= message.subject %>">
-                                        <textarea class="post-edit__textbox" type="text" name="textEdit" placeholder=""><%= message.text %></textarea>
-                                        <input class="small-button-syles" type="submit" value="Send">
+                                        <textarea class="post-edit__input" role="textbox"  type="text" name="subjectEdit" oninput="grow(this)"><%= message.subject %></textarea>
+                                        <textarea class="post-edit__textbox" role="textbox" type="text" name="textEdit" oninput="grow(this)"><%= message.text %></textarea>
+                                        <input class="btn-large" type="submit" value="Send">
                                     </form>
                                 </div>
                             </div>
                     </div>
+                    
                 <% }); %>
             </ul>
         </div>
