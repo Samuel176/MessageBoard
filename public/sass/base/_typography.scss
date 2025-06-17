@@ -1,4 +1,5 @@
 @use"../abstracts/variables" as *;
+@use"../abstracts/mixins" as *;
 
 *{
     font-family: "lato";
@@ -15,13 +16,13 @@ p{
 
 .heading-primary{
     font-size: 5rem;
-    background: linear-gradient(180deg,rgba(0, 46, 145, 1) 0%, rgba(0, 23, 71, 1) 100%);
+    @include dark-blue-gradiant;
     background-clip: text;
     color: transparent;
 }
 .heading-secondary{
     font-size: 3rem;
-    background: linear-gradient(180deg,rgba(0, 46, 145, 1) 0%, rgba(0, 23, 71, 1) 100%);
+    @include dark-blue-gradiant;
     background-clip: text;
     color: transparent;
 }
@@ -29,7 +30,7 @@ p{
 
 .heading-tertiary{
     font-size: 2rem;
-    background: linear-gradient(180deg,rgba(0, 46, 145, 1) 0%, rgba(0, 23, 71, 1) 100%);
+    @include dark-blue-gradiant;
     background-clip: text;
     color: transparent;
 }
@@ -39,7 +40,7 @@ p{
 .heading-four{
     margin: 2rem 0;
     font-size: 2rem;
-    background: linear-gradient(180deg,rgba(0, 46, 145, 1) 0%, rgba(0, 23, 71, 1) 100%);
+    @include dark-blue-gradiant;
     background-clip: text;
     color: transparent;
 }

@@ -10,6 +10,10 @@ box-shadow: -1px 1px 5px 1px rgba(64,64,64,0.09);
     border-image: linear-gradient(90deg, rgb(255, 255, 255), rgb(0, 0, 0)) 1;
 }
 
+@mixin dark-blue-gradiant{
+    background: linear-gradient(180deg,rgba(0, 46, 145, 1) 0%, rgba(0, 23, 71, 1) 100%);
+}
+
 @mixin light-blue-gradiant{
     background: linear-gradient(to top, #79a3fe62 0%, #eef3ff62 100%);
 }
