@@ -1,4 +1,5 @@
 @use"../abstracts/variables" as *;
+@use"../abstracts/mixins" as *;
 
 input, textarea {
     border: none;
@@ -28,7 +29,27 @@ input, textarea {
             border-bottom: 2px solid $color-yellow-red;
         }
     }
+    &__input-image{
+        border: 2px solid;
+        border-radius: 5px;
+        padding: 1rem;
+        margin: 1rem 0;
 
+        &::file-selector-button{
+            border: none;
+            padding: 1rem;
+            background-color: $color-blue-primary;
+            border-radius: 5px;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+
+            &:hover{
+                background-color: $color-light-blue-primary;
+            }
+        }
+
+    }
     
 
     &__input-text{

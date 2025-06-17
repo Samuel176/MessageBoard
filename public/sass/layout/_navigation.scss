@@ -56,7 +56,8 @@
     position: absolute;
     top: 6rem;
     right: 6rem;
-    background-color: transparent;
+    background-color: #ffffff96;
+    backdrop-filter: blur(3px);
     border-radius: 4px;
     width: 4rem;
     height: 4rem;
@@ -90,7 +91,6 @@
 
     &::after{
         content: '';
-        
         display: block;
         position: absolute;
         left: 5rem;
@@ -140,6 +140,8 @@
     opacity: 1;
     right: 32rem;
     pointer-events: auto;
+    background-color: #00000000;
+    backdrop-filter: blur(0);
     }
 }
 @keyframes messageBox{

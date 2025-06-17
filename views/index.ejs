@@ -7,7 +7,6 @@
                     <h2 class="heading-secondary "><%=randomTopic %></h2>
             </div> 
         </section>   
-         
         <div class="message-board">
             <h2 class="heading-secondary">Posts</h2>
             <ul class="message-board__list">
@@ -31,7 +30,9 @@
                                 <p class="post__item-user-name"><%= message.user %>  </p>
                                 <p class="post__item-subject-name">      <%= message.subject %></p>
                                 <p class="post__item-message-text"><%= message.text %></p>
-                                 
+                                <div class="post__image-container">
+                                    <img class="post__image-container-image" src="<%= message.image %>" alt="">
+                                </div>
                             </li>
                         </a>
                         <div class="">
@@ -54,7 +55,6 @@
                                 </li>
                                 <% }); %>
                             </ul>
-
                           <!--  <div class="like-button">
                                 <form action=""></form>
                                 <input type="submit" name="" id="">
@@ -62,7 +62,6 @@
 
                                 <p class="like-button__down">&#9754;</p>
                             </div> -->
-                            
                         </div>
                             <div id="">
                                 <div class="post-edit">
@@ -79,6 +78,4 @@
             </ul>
         </div>
 </div>
-
-
 <%- include("partials/footer.ejs") %>

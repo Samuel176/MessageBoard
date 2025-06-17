@@ -124,7 +124,8 @@ li {
   position: absolute;
   top: 6rem;
   right: 6rem;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.5882352941);
+  backdrop-filter: blur(3px);
   border-radius: 4px;
   width: 4rem;
   height: 4rem;
@@ -194,6 +195,8 @@ li {
   opacity: 1;
   right: 32rem;
   pointer-events: auto;
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0);
 }
 
 @keyframes messageBox {
@@ -235,6 +238,24 @@ input:focus-visible, textarea:focus-visible {
 }
 .message-post-home__input:focus {
   border-bottom: 2px solid #fca311;
+}
+.message-post-home__input-image {
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+.message-post-home__input-image::file-selector-button {
+  border: none;
+  padding: 1rem;
+  background-color: #012777;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.message-post-home__input-image::file-selector-button:hover {
+  background-color: #0240c3;
 }
 .message-post-home__input-text {
   border-bottom: 2px solid;
@@ -400,6 +421,7 @@ input:focus-visible, textarea:focus-visible {
   border-radius: 4px;
 }
 .post__item {
+  word-wrap: break-word;
   font-size: 3rem;
   list-style: none;
 }
@@ -436,6 +458,15 @@ input:focus-visible, textarea:focus-visible {
   border: none;
   border-bottom: 1px solid #C0C0C0;
   transform: scale(0.8);
+}
+.post__image-container {
+  width: 100%;
+  max-width: 45rem;
+  margin: 0 auto;
+}
+.post__image-container-image {
+  width: 100%;
+  height: auto;
 }
 
 .post-edit {
