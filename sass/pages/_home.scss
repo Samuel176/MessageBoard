@@ -1,0 +1,31 @@
+@use"../abstracts/variables" as *;
+
+
+.hero-section{
+    text-align: center;
+    margin-top: 5rem;
+    
+}
+
+.hero{
+    display: flex;
+    flex-direction: column;
+    background-color: $color-off-white;
+    text-align: center;
+    
+}
+
+
+.message-board{
+    max-width: 1024px;
+    margin: 0 auto;
+
+    &__list{
+    padding: 0;
+    
+}
+
+
+}
+
+

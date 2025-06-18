@@ -1,0 +1,10 @@
+@use"../abstracts/variables" as *;
+@use "../abstracts/functions" as *;
+@use "../abstracts/mixins" as *;
+
+.message-board-page{
+    max-width: 1024px;
+    padding: 1rem;
+    margin: auto;
+    margin-top: 15rem;
+}
