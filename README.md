@@ -15,8 +15,7 @@ Current Features
 Upcoming Features
 
 1.Like and dislike functionality
-
-2.reactive design
+2.account log in
 
 How to Run
 
