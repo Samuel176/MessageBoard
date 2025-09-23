@@ -22,14 +22,12 @@
                             </li>
                 </a>
                 <div class="">
-                    
-                                <div>
-                                    <form class="comment-form" id="commentForm<%= message.id %>" action="/comment/<%= message.id %>" method="POST">
-                                        <!-- <input class="comment-form_input" type="text" name="userComment" placeholder="User Name"> -->
-                                        <textarea class="comment-form__text" name="textComment" placeholder="Your Comment" maxlength="300"></textarea>
-                                        <button class="small-button" type="submit">Submit</button>
-                                    </form>
-                                </div>
+                            <div>
+                                <form class="comment-form" id="commentForm<%= message.id %>" action="/comment/<%= message.id %>" method="POST">
+                                    <textarea class="comment-form__text" name="textComment" placeholder="Your Comment" maxlength="300"></textarea>
+                                    <button class="small-button" type="submit">Submit</button>
+                                </form>
+                            </div>
                             <ul>
                                 <h4 class="heading-four">Latest Comments</h4>
                                 <% comments
