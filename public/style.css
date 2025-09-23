@@ -23,6 +23,18 @@ p {
   color: transparent;
 }
 
+.heading-secondary-post {
+  font-size: 3rem;
+  background: linear-gradient(180deg, rgb(0, 46, 145) 0%, rgb(0, 23, 71) 100%);
+  background-clip: text;
+  color: transparent;
+}
+@media (max-width: 760px) {
+  .heading-secondary-post {
+    font-size: 4rem;
+  }
+}
+
 .heading-tertiary {
   font-size: 2rem;
   background: linear-gradient(180deg, rgb(0, 46, 145) 0%, rgb(0, 23, 71) 100%);
@@ -64,9 +76,34 @@ p {
 html {
   font-size: 62.5%;
 }
+@media (min-width: 1600px) {
+  html {
+    font-size: 75%;
+  }
+}
+@media (max-width: 760px) {
+  html {
+    font-size: 56.25%;
+  }
+}
+@media (max-width: 425px) {
+  html {
+    font-size: 50%;
+  }
+}
 
 body {
   margin: 0rem 6rem;
+}
+@media (max-width: 760px) {
+  body {
+    margin: 0rem 2rem;
+  }
+}
+@media (max-width: 425px) {
+  body {
+    margin: 0rem 1rem;
+  }
 }
 
 ul {
@@ -134,6 +171,16 @@ li {
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.52);
   transition: right 0.4s;
 }
+@media (max-width: 1024px) {
+  .message__button {
+    right: 2rem;
+  }
+}
+@media (max-width: 760px) {
+  .message__button {
+    right: 0;
+  }
+}
 .message__message-post {
   right: -26rem;
   top: 6rem;
@@ -148,6 +195,17 @@ li {
   pointer-events: none;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.52);
   backdrop-filter: blur(10px);
+}
+@media (max-width: 760px) {
+  .message__message-post {
+    box-shadow: 0;
+    padding: 1rem 0;
+    border: 0;
+    width: 100vw;
+    height: 100vh;
+    top: 4.2rem;
+    background: linear-gradient(to top, rgba(213, 226, 253, 0.7960784314) 0%, rgba(244, 248, 255, 0.7882352941) 60%);
+  }
 }
 .message__checkbox {
   display: none;
@@ -191,12 +249,22 @@ li {
   right: 4rem;
   pointer-events: auto;
 }
+@media (max-width: 760px) {
+  .message__checkbox:checked ~ .message__label .message__message-post {
+    right: 0;
+  }
+}
 .message__checkbox:checked ~ .message__label .message__button {
   opacity: 1;
   right: 32rem;
   pointer-events: auto;
   background-color: rgba(0, 0, 0, 0);
   backdrop-filter: blur(0);
+}
+@media (max-width: 760px) {
+  .message__checkbox:checked ~ .message__label .message__button {
+    right: 0;
+  }
 }
 
 @keyframes messageBox {
@@ -228,6 +296,15 @@ input:focus-visible, textarea:focus-visible {
   width: 30rem;
   transition: 2s;
 }
+@media (max-width: 760px) {
+  .message-post-home {
+    width: 100%;
+    height: 60vh;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
 .message-post-home__input {
   border-bottom: 2px solid;
   transition: 0.1s;
@@ -235,6 +312,11 @@ input:focus-visible, textarea:focus-visible {
   font-size: 1.5rem;
   transform-origin: left;
   background-color: transparent;
+}
+@media (max-width: 760px) {
+  .message-post-home__input {
+    width: 80%;
+  }
 }
 .message-post-home__input:focus {
   border-bottom: 2px solid #fca311;
@@ -263,6 +345,12 @@ input:focus-visible, textarea:focus-visible {
   font-size: 1.5rem;
   background-color: transparent;
 }
+@media (max-width: 760px) {
+  .message-post-home__input-text {
+    width: 80%;
+    font-size: 1.7rem;
+  }
+}
 .message-post-home__input-text:focus {
   border-bottom: 2px solid #fca311;
 }
@@ -283,11 +371,15 @@ input:focus-visible, textarea:focus-visible {
   background-color: #011a50;
   color: #fff;
 }
+@media (max-width: 760px) {
+  .btn-large {
+    width: 80%;
+    font-size: 2rem;
+  }
+}
 .btn-large:hover {
   transform: scale(1.05) translateY(-2px);
   box-shadow: 0px 4px 5px 1px rgba(0, 0, 0, 0.53);
-  -webkit-box-shadow: 0px 4px 5px 1px rgba(0, 0, 0, 0.53);
-  -moz-box-shadow: 0px 4px 5px 1px rgba(0, 0, 0, 0.53);
   background-color: #012777;
 }
 .btn-large::after {
@@ -460,22 +552,20 @@ input:focus-visible, textarea:focus-visible {
   transform: scale(0.8);
 }
 .post__image-container {
-  width: 700px;
-  height: 540px;
+  font-size: 0;
+  padding: 1px;
   overflow: hidden;
   justify-self: center;
   border: 1px solid #949494;
   border-radius: 5px;
+  position: relative;
 }
 .post__image-container-image {
   width: 100%;
-  height: 54rem;
-  position: absolute;
   left: 0;
   right: 0;
   margin-inline: auto;
-  width: fit-content;
-  transform: scale(0.9);
+  border-radius: 5px;
 }
 .post__image-container-background {
   z-index: -1;
@@ -483,6 +573,8 @@ input:focus-visible, textarea:focus-visible {
   width: 700px;
   height: 540px;
   filter: blur(20px);
+  opacity: 70%;
+  display: none;
 }
 
 .post-edit {

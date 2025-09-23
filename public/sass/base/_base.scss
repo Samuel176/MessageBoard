@@ -1,3 +1,5 @@
+@use"../abstracts/variables" as *;
+@use"../abstracts/mixins" as *;
 *,
 *::after
 *::before{
@@ -9,12 +11,34 @@
 
 html{
     font-size: 62.5%; 
-    // 1 rem = 10px; 10/16 = 62.5
+ 
+// font repsonsive sizing
+
+    @include respond(largescreen){
+        font-size: 75%;
+    }
+   
+    @include respond(tablet){
+        font-size: 56.25%; 
+    }
+   
+    @include respond(mobile){
+        font-size: 50%;
+    }
+    
 
 }
 
 body{
     margin: 0rem 6rem;
+
+    @include respond(tablet){
+        margin: 0rem 2rem;
+    }
+
+    @include respond(mobile){
+        margin: 0rem 1rem;
+    }
 }
 
 
@@ -24,3 +48,4 @@ ul{
 li{
     list-style: none;
 }
+
