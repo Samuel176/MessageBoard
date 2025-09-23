@@ -1,0 +1,84 @@
+<%- include("partials/header.ejs") %>
+<div class="container-fluid">
+    <section class="hero-section ">
+            <div class="hero ">
+                    <h1 class="heading-primary ">Message Board</h1>
+                    <h3 class="heading-tertiary ">The Topic of the day is!</h3>
+                    <h2 class="heading-secondary "><%=randomTopic %></h2>
+            </div> 
+        </section>   
+        <div class="message-board">
+            <h2 class="heading-secondary">Posts</h2>
+            <ul class="message-board__list">
+                <% messages.forEach(message => { %>
+                    <hr class="post__break">
+                    <div class="post">
+                        <div class="post-buttons">
+                            <form method="POST" action="/delete/<%= message.id %>"> 
+                                <button class="delete-button">
+                                    <span class="delete-button__icon-1"></span>
+                                    <span class="delete-button__icon-2"></span>
+                                </button>
+                            </form>
+                                <button class="edit-button" onclick="toggleForm('<%= message.id %>')">
+                                    <span class="edit-button__icon">&#9998;</span>
+                                </button>
+                        </div>
+                        <a href="/messages/<%= message.id %>" class="post__link">
+                            <li class="post__item">
+                                <img class="post__item-user-image" src="/images/no-user.jpg" alt="">
+                                <p class="post__item-user-name"><%= message.user %>  </p>
+                                <p class="post__item-subject-name">      <%= message.subject %></p>
+                                <p class="post__item-message-text"><%= message.text %></p>
+                                <% if (message.image) { %>
+                                <div class="post__image-container">
+                                    <img class="post__image-container-background" src="/<%= message.image %>" alt="">
+                                    <img class="post__image-container-image" src="/<%= message.image %>" alt="">
+                                </div>
+                                <% } %>
+                            </li>
+                        </a>
+                        <div class="">
+                            <ul>
+                                <h4 class="heading-four">Latest Comments</h4>
+                                <% comments
+                                .filter(comment => comment.messageId === message.id)
+                                .slice(0,2)
+                                .forEach(comment => { %>
+                                <li class="comment-item">
+                                    <form method="POST" action="/commentDelete/<%= message.id %>"> 
+                                        <button class="comment-delete-button">
+                                            <span class="comment-delete-button__icon-1"></span>
+                                            <span class="comment-delete-button__icon-2"></span>
+                                        </button>  
+                                    </form>
+                                    <img class="comment-item__user-image-small" src="/images/no-user.jpg" alt="">
+                                    <p class="comment-item__user"><%= comment.user %></p>
+                                    <p class="comment-item__text"><%= comment.text %></p>
+                                </li>
+                                <% }); %>
+                            </ul>
+                          <!--  <div class="like-button">
+                                <form action=""></form>
+                                <input type="submit" name="" id="">
+                                <p class="like-button__up">&#9754;</p>
+
+                                <p class="like-button__down">&#9754;</p>
+                            </div> -->
+                        </div>
+                            <div id="">
+                                <div class="post-edit">
+                                    <form class="post-edit__form" id="editForm<%= message.id %>" action="/edit/<%= message.id %>" method="POST">
+                                        <textarea class="post-edit__input" role="textbox"  type="text" name="subjectEdit" oninput="grow(this)"><%= message.subject %></textarea>
+                                        <textarea class="post-edit__textbox" role="textbox" type="text" name="textEdit" oninput="grow(this)"><%= message.text %></textarea>
+                                        <input class="btn-large" type="submit" value="Send">
+                                    </form>
+                                </div>
+                            </div>
+                    </div>
+                    
+                <% }); %>
+            </ul>
+        </div>
+</div>
+<%- include("partials/footer.ejs") %>
