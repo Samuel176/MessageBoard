@@ -24,7 +24,7 @@
                 <div class="">
                             <div>
                                 <form class="comment-form" id="commentForm<%= message.id %>" action="/comment/<%= message.id %>" method="POST">
-                                    <textarea class="comment-form__text" name="textComment" placeholder="Your Comment" maxlength="300"></textarea>
+                                    <textarea  class="comment-form__text autoResize" name="textComment" placeholder="Your Comment" maxlength="300" oninput="grow(this)"></textarea>
                                     <button class="small-button" type="submit">Submit</button>
                                 </form>
                             </div>

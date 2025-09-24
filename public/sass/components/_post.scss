@@ -9,6 +9,7 @@
     @include border-shadow-light;
     position: relative;
     @include border-curve-small;
+    
     &__item{
         word-wrap: break-word;
         font-size: 3rem;
@@ -18,6 +19,10 @@
             font-size: 1.8rem;
             padding-left: 4rem;
             word-wrap: break-word;
+
+            @include respond(tablet){
+             padding-left: .2rem;
+    }
         }
         &-user-name{
             font-size: 1.5rem;
@@ -86,10 +91,7 @@
 
 }
 
-
-
 .post-edit{
-    position: absolute;
     top: 0;
     right: 4rem;
     backdrop-filter: blur(2px);
@@ -99,22 +101,21 @@
     
     
     &__form{
+    transition: all .2s; 
     display: none;
+    opacity: 1;
     flex-direction: column;
-    background-color: #01277730;
     justify-content: space-evenly;
     padding: 2rem;
-    @include light-blue-gradiant;
     @include border-curve-small;
     
     }
 
     &__input{
         padding: 5px;
-        width: 30rem;
         margin: .5rem 0;
         background-color: rgba(255, 255, 255, 0.836);
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         outline: none;
         margin-bottom: .5rem;
         border: 1px solid $color-dark-grey;
@@ -123,7 +124,6 @@
 
     &__textbox{
         padding: 5px;
-        width: 30rem;
         margin: .5rem 0;
         background-color: rgba(255, 255, 255, 0.836);
         backdrop-filter: blur(20px);

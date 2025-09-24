@@ -3,8 +3,8 @@ import {dirname} from "path";
 import{fileURLToPath} from "url";
 import bodyParser from "body-parser";
 import multer from "multer";
-import fs from 'fs';
-import path from "path";
+import cookieParser from "cookie-parser";
+import path from 'path';
 
 const app = express();
 const port = 3000;
@@ -55,12 +55,19 @@ const randomTopic = topics[randomIndex];
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
+app.use(cookieParser());
 
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
 app.get("/", (req, res) => {
-  res.render(__dirname + "/views/index.ejs", { messages: messages, comments: comments, userName: userName, randomTopic });
+  let userId = req.cookies.userId;
+  if(!userId){
+    userId = generateUserName()
+    res.cookie('userId', userId, {httpOnly: true})
+  };
+  console.log(userId)
+  res.render(__dirname + "/views/index.ejs", { messages: messages, comments: comments, userName: userName, randomTopic, userId });
 });
 
 // message ID generate
@@ -104,7 +111,7 @@ app.get("/messages/:id", (req, res) => {
 app.post("/submit", imageUpload.single("imageFile"), (req, res) => {
   const imagePath = req.file ? `images/uploads/${req.file.filename}` : null;
   const id = generateID();
-  let user = req.body.user || generateUserName();
+  let user = req.body.user || req.cookies.userId;
   const message = {
       id,
       user,
@@ -121,7 +128,7 @@ app.post("/submit", imageUpload.single("imageFile"), (req, res) => {
 app.post("/comment/:id", (req, res) => {
   const messageId = parseInt(req.params.id);
   const messageExists = messages.some(message => message.id === messageId);
-  let user = req.body.userComment || generateUserName();
+  let user = req.body.userComment || req.cookies.userId;
   if (messageExists) {
     const commentId = generateCommentID();
     const comment = {
@@ -161,8 +168,16 @@ app.post("/edit/:id", (req, res) =>{
 // delete post
 app.post("/delete/:id", (req, res) =>{
   const idToRemove = parseInt(req.params.id);
-  const indexToRemove = messages.findIndex(message => message.id === idToRemove);
-  messages.splice(indexToRemove, 1);
+  const indexToRemove = messages.find(message => message.id === idToRemove);
+
+  // only user can delete own posts
+  if(req.cookies.userId === indexToRemove.user)
+    {
+      messages.splice(indexToRemove, 1);
+    }else{
+      console.log("no no no")
+    }
+
   res.redirect("/");
 });
 // comment delete

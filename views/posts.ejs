@@ -64,8 +64,8 @@
                     </li>
                     <div class="post-edit">
                         <form class="post-edit__form" id="editForm<%= message.id %>" action="/edit/<%= message.id %>" method="POST">
-                            <textarea class="post-edit__input" role="textbox"  type="text" name="subjectEdit" oninput="grow(this)"><%= message.subject %></textarea>
-                            <textarea class="post-edit__textbox" role="textbox" type="text" name="textEdit" oninput="grow(this)"><%= message.text %></textarea>
+                            <textarea id="autoResize" class="post-edit__input" role="textbox"  type="text" name="subjectEdit" oninput="grow(this)"><%= message.subject %></textarea>
+                            <textarea id="autoResize" class="post-edit__textbox" role="textbox" type="text" name="textEdit" oninput="grow(this)"><%= message.text %></textarea>
                             <input class="btn-large" type="submit" value="Send">
                         </form>
                     </div>

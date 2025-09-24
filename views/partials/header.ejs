@@ -30,9 +30,9 @@
                         <h3 class="heading-secondary-post">New Post</h3>
                         <form id="message-form" action="/submit" enctype="multipart/form-data" method="POST">
                         <div class="message-post-home">
-                            <input class="message-post-home__input margin-vert-very-small" type="text" name="user" placeholder="Name (Optonal)">
-                            <textarea class="message-post-home__input margin-vert-very-small" type="text" name="subject" placeholder="Title" oninput="grow(this)" ></textarea>
-                            <textarea class="message-post-home__input-text margin-vert-very-small" type="text" name="text" placeholder="Text" oninput="grow(this)"></textarea>
+                            <input  class="message-post-home__input margin-vert-very-small autoResize" type="text" name="user" placeholder="Name (Optonal)" oninput="grow(this)">
+                            <textarea class="message-post-home__input margin-vert-very-small autoResize" type="text" name="subject" placeholder="Title" oninput="grow(this)" ></textarea>
+                            <textarea class="message-post-home__input-text margin-vert-very-small autoResize" type="text" name="text" placeholder="Text" oninput="grow(this)"></textarea>
                             <input class="message-post-home__input-image" type="file" name="imageFile">
                             
                             <input class="btn-large" type="submit" value="Submit">
