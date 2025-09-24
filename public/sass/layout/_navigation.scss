@@ -89,7 +89,7 @@
     transition: opacity 0.4s ease, right 0.4s ease;
     pointer-events: none;
     box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.52);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     
     @include respond(tablet){
        box-shadow: 0;

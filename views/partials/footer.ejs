@@ -2,12 +2,17 @@
     <p class="copy-right-footer">Copyright © <%= new Date().getFullYear() %> </p>
 </div>
 <script>
+  
   function toggleForm(id) {
     const form = document.getElementById(`editForm${id}`);
     if (form) {
       form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'flex' : 'none';
+      form.style.opacity =(form.style.opacity === '0' || form.style.opacity ==='') ? '1' : '0' ;
     }
   }
+
+  
+
   function grow(element){
     element.style.height = "auto";
     element.style.height = (element.scrollHeight) + "px";
