@@ -1,0 +1,48 @@
+@use"../abstracts/variables" as *;
+@use"../abstracts/mixins" as *;
+
+
+.popup{
+    height: 100vh;
+    width: 100%;
+    background-color: rgba($color-black, .8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5000;
+    opacity: 1;
+    transition: all 0.3s;
+
+    .user-popup{
+    position: absolute;
+    width: 40rem;
+    padding:1rem;
+    background-color: #ffffff;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+
+
+    &__input{
+        margin: 1.5rem 0;
+        font-size: 1.5rem;
+        border-bottom: solid 1px $color-dark-blue;
+        transition: 0.2s;
+        background-color: transparent;
+        &:focus{
+            border-bottom: solid 1px $color-yellow-red;
+        }
+    }
+
+    &__title{
+        font-size: 1.5rem;
+    }
+
+    @include respond(tablet){
+        width: 100vw;
+        top: 30%;
+    }
+}
+}

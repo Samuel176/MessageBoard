@@ -31,11 +31,7 @@ const comments = [];
 const userName = [];
 const topics = [
   "Criminals? Should They Be President?",
-  "War in Ukraine?",
-  "Abortion Up To 1095 Weeks?",
-  "The Enviroment. Is it dying or just not trying hard enough",
-  "Immigrants, Should They Just Go Home?",
-  "The Church, A Force For Good Or A Bunch Of Nonces"
+  "Is Italian food overRated??"
 ];
 
 const storage = multer.diskStorage({
@@ -62,13 +58,27 @@ app.set("views", __dirname + "/views");
 
 app.get("/", (req, res) => {
   let userId = req.cookies.userId;
+  let firstVistit = false;
   if(!userId){
     userId = generateUserName()
+    firstVistit = true;
     res.cookie('userId', userId, {httpOnly: true})
   };
+  if(firstVistit){
+
+  }
+
   console.log(userId)
-  res.render(__dirname + "/views/index.ejs", { messages: messages, comments: comments, userName: userName, randomTopic, userId });
+  res.render(__dirname + "/views/index.ejs", { messages: messages, comments: comments, userName: userName, randomTopic, userId, firstVistit });
 });
+
+// userName
+app.post("/userName", (req, res) =>{
+  const newName = req.body.user || req.cookies.userId;
+  res.cookie('userId', newName, { httpOnly: true });
+  console.log(newName);
+})
+
 
 // message ID generate
 function generateID(){
@@ -145,6 +155,7 @@ app.post("/comment/:id", (req, res) => {
     console.log("not found")
   }
 });
+
 // edit post
 app.post("/edit/:id", (req, res) =>{
   const idToEdit = parseInt(req.params.id);
@@ -180,6 +191,7 @@ app.post("/delete/:id", (req, res) =>{
 
   res.redirect("/");
 });
+
 // comment delete
 app.post("/commentDelete/:id", (req, res) =>{
   const idToRemove = parseInt(req.params.id);
