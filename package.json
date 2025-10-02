@@ -8,8 +8,8 @@
     "multer": "^2.0.1",
     "sass": "^1.89.0"
   },
-  "name": "capstone",
-  "version": "1.0.0",
+  "name": "messageboard",
+  "version": "2.0.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
