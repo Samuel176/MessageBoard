@@ -13,6 +13,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const messages = [
   {
   id: 1795,
+  userId: 1234,
   user: 'UserName1 ',
   subject: 'test 1 ',
   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -20,6 +21,7 @@ const messages = [
 },
 {
   id: 2341,
+  userId: 1234,
   user: 'testname ',
   subject: "What's the worst hotel in the UK you've ever stayed in?",
   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -58,18 +60,19 @@ app.set("views", __dirname + "/views");
 
 app.get("/", (req, res) => {
   let userId = req.cookies.userId;
+  let userNumberId = req.cookies.userNumberId;
   let firstVistit = false;
   if(!userId){
-    userId = generateUserName()
+    userId = generateUserName();
+    userNumberId = generateUserName();
     firstVistit = true;
-    res.cookie('userId', userId, {httpOnly: true})
+    res.cookie('userId', userId,  {httpOnly: true})
+    res.cookie('userNumberId', userNumberId,  {httpOnly: true})
+    
   };
-  if(firstVistit){
-
-  }
 
   console.log(userId)
-  res.render(__dirname + "/views/index.ejs", { messages: messages, comments: comments, userName: userName, randomTopic, userId, firstVistit });
+  res.render(__dirname + "/views/index.ejs", { messages: messages, comments: comments, userName: userName, randomTopic, userId, userNumberId, firstVistit });
 });
 
 // userName
@@ -77,6 +80,7 @@ app.post("/userName", (req, res) =>{
   const newName = req.body.user || req.cookies.userId;
   res.cookie('userId', newName, { httpOnly: true });
   console.log(newName);
+  res.redirect("/");
 })
 
 
@@ -91,7 +95,7 @@ function generateCommentID(){
   return comments.length;
 };
 
-// view posts page navbar
+// view posts page navbar 
 app.get("/posts", (req, res) =>{
   res.render(__dirname + "/views/posts.ejs", { messages: messages, comments: comments, userName: userName, randomTopic });
 })
@@ -122,14 +126,15 @@ app.post("/submit", imageUpload.single("imageFile"), (req, res) => {
   const imagePath = req.file ? `images/uploads/${req.file.filename}` : null;
   const id = generateID();
   let user = req.body.user || req.cookies.userId;
+  let userId = req.cookies.userNumberId
   const message = {
       id,
+      userId,
       user,
       subject: req.body.subject,
       image: imagePath,
       text: req.body.text,
     };
-    console.log(messages)
     messages.unshift(message);
     res.redirect("/");
   });
@@ -177,17 +182,19 @@ app.post("/edit/:id", (req, res) =>{
 });
 
 // delete post
-app.post("/delete/:id", (req, res) =>{
+app.post("/delete/:id", (req, res) => {
   const idToRemove = parseInt(req.params.id);
-  const indexToRemove = messages.find(message => message.id === idToRemove);
+  const messageToRemove = messages.find(message => message.id === idToRemove);
 
-  // only user can delete own posts
-  if(req.cookies.userId === indexToRemove.user)
-    {
-      messages.splice(indexToRemove, 1);
-    }else{
-      console.log("no no no")
+  if (messageToRemove && req.cookies.userNumberId === messageToRemove.userId) {
+    const index = messages.indexOf(messageToRemove);
+    if (index !== -1) {
+      messages.splice(index, 1);
+      console.log("MESSAGE VANQUISHED!");
     }
+  } else {
+    console.log("no no no, that won't work");
+  }
 
   res.redirect("/");
 });

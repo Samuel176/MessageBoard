@@ -7,13 +7,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>capstone</title>
+    <title>message board</title>
 </head>
 <body>
     <div class="nav">
         <ul class="nav__list">
          <li class="nav__item"><a href="/">Home</a></li>
-         <!-- <li><img src="/images/logoMessagBoard.png" alt="logo"></li>  -->
          <div class="dropDownMenu-posts">
             <li class="nav__item"><a href="/posts">Posts</a></li>
          </div>
@@ -30,7 +29,6 @@
                         <h3 class="heading-secondary-post">New Post</h3>
                         <form id="message-form" action="/submit" enctype="multipart/form-data" method="POST">
                         <div class="message-post-home">
-                            <input  class="message-post-home__input margin-vert-very-small autoResize" type="text" name="user" placeholder="Name (Optonal)" oninput="grow(this)">
                             <textarea class="message-post-home__input margin-vert-very-small autoResize" type="text" name="subject" placeholder="Title" oninput="grow(this)" ></textarea>
                             <textarea class="message-post-home__input-text margin-vert-very-small autoResize" type="text" name="text" placeholder="Text" oninput="grow(this)"></textarea>
                             <input class="message-post-home__input-image" type="file" name="imageFile">
