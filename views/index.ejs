@@ -94,4 +94,12 @@
             </ul>
         </div>
 </div>
+<script>
+
+   const isFirstVistit = <%=firstVistit%>;
+
+    if(!isFirstVistit){
+    document.getElementById('popup-id').style.display = 'none';
+     }
+</script>
 <%- include("partials/footer.ejs") %>

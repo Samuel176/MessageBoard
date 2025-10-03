@@ -2,11 +2,11 @@
     <p class="copy-right-footer">Copyright © <%= new Date().getFullYear() %> </p>
 </div>
 <script>
-  const isFirstVistit = <%=firstVistit%>;
+  
 
-  if(!isFirstVistit){
-    document.getElementById('popup-id').style.display = 'none';
-  }
+  // if(isFirstVistit){
+  //   document.getElementById('popup-id').style.display = 'none';
+  // }
 
   function toggleForm(id) {
     const form = document.getElementById(`editForm${id}`);

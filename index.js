@@ -29,7 +29,13 @@ const messages = [
 }
 ];
 
-const comments = [];
+const comments = [{
+  userId: 1234,
+  messageId: 1795, 
+  idComment: 123,
+  user: "user  1234",
+  text: "wow so cool",
+}];
 const userName = [];
 const topics = [
   "Criminals? Should They Be President?",
@@ -45,6 +51,7 @@ const storage = multer.diskStorage({
     cb(null, uniqueName);
   },
 });
+
 const imageUpload = multer({ storage: storage });
 
 const randomIndex = Math.floor(Math.random() * topics.length);
@@ -92,7 +99,7 @@ function generateUserName(){
   return "User " + Math.floor((Math.random() * 10000) + 1);
 }
 function generateCommentID(){
-  return comments.length;
+  return Math.floor((Math.random() * 10000) + 1);
 };
 
 // view posts page navbar 
@@ -143,19 +150,23 @@ app.post("/submit", imageUpload.single("imageFile"), (req, res) => {
 app.post("/comment/:id", (req, res) => {
   const messageId = parseInt(req.params.id);
   const messageExists = messages.some(message => message.id === messageId);
+  let userId = req.cookies.userNumberId
   let user = req.body.userComment || req.cookies.userId;
+
   if (messageExists) {
     const commentId = generateCommentID();
     const comment = {
+      userId: userId,
       messageId: messageId, 
       idComment: commentId,
       user,
       text: req.body.textComment,
-      
     };
     comments.unshift(comment);
     res.redirect(`/messages/${messageId}`);
+
   }else{
+
     res.redirect("/");
     console.log("not found")
   }
@@ -167,17 +178,21 @@ app.post("/edit/:id", (req, res) =>{
   const indexToEdit = messages.findIndex(message => message.id === idToEdit);
   const originalMessage = messages[indexToEdit];
   let user = originalMessage.user;
-  let subject = req.body.subjectEdit || originalMessage.subject;
-  let text = req.body.textEdit || originalMessage.text;
-  let image = originalMessage.image
-  const newMessage = {
+
+
+  if(originalMessage.userId === req.cookies.userNumberId ){
+    const newMessage = {
       id : idToEdit,
-      user,
-      subject,
-      text,
-      image
+      user: originalMessage.user,
+      subject: req.body.subjectEdit || originalMessage.subject,
+      text: req.body.textEdit || originalMessage.text,
+      image: originalMessage.image
   };
+
   messages.splice(indexToEdit, 1, newMessage);
+  };
+  
+  
   res.redirect("/");
 });
 
@@ -190,7 +205,6 @@ app.post("/delete/:id", (req, res) => {
     const index = messages.indexOf(messageToRemove);
     if (index !== -1) {
       messages.splice(index, 1);
-      console.log("MESSAGE VANQUISHED!");
     }
   } else {
     console.log("no no no, that won't work");
@@ -202,8 +216,17 @@ app.post("/delete/:id", (req, res) => {
 // comment delete
 app.post("/commentDelete/:id", (req, res) =>{
   const idToRemove = parseInt(req.params.id);
-  const indexToRemove = comments.findIndex(comment => comment.id === idToRemove);
-  comments.splice(indexToRemove, 1);
+  const commentToRemove = comments.find(comment => comment.messageId === idToRemove)
+  
+  if(commentToRemove.userId && req.cookies.userNumberId === commentToRemove.userId){
+    const index = comments.indexOf(commentToRemove)
+    if(index !== -1){
+      comments.splice(index, 1)
+    }
+  }else{
+    console.log("failed!")
+  }
+
   res.redirect('back');
 });
 
