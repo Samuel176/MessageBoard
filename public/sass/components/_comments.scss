@@ -33,16 +33,18 @@
 }
 
 .comment-form{
-
     margin: 1rem;
     padding: 2rem 0rem;
     display: flex;
-    justify-content: space-between;
+   
+    flex-direction: column;
+    align-items: flex-end;
     
 
     &__text{
+        margin-bottom: 1rem;
         font-size: 1.5rem;
-        width: 95%;
+        width: 100%;
         @include border-shadow-light;
     }
 
