@@ -66,9 +66,9 @@ app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
 app.get("/", (req, res) => {
-  const userId = req.cookies.userId;
-  const userNumberId = req.cookies.userNumberId;
-  const firstVistit = false;
+  let userId = req.cookies.userId;
+  let userNumberId = req.cookies.userNumberId;
+  let firstVistit = false;
   if(!userId){
     userId = generateUserName();
     userNumberId = generateUserName();
