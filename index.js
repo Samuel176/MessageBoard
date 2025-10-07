@@ -104,7 +104,8 @@ function generateCommentID(){
 
 // view posts page navbar 
 app.get("/posts", (req, res) =>{
-  res.render(__dirname + "/views/posts.ejs", { messages: messages, comments: comments, userName: userName, randomTopic });
+  const userNumberId = req.cookies.userNumberId;
+  res.render(__dirname + "/views/posts.ejs", { messages: messages, comments: comments, userName: userName, userNumberId });
 })
 
 // view contact navbar

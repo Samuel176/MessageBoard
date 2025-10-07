@@ -26,6 +26,7 @@
                 <% messages.forEach(message => { %>
                     <hr class="post__break">
                     <div class="post">
+                        <% if(message.userId === userNumberId ){ %>
                         <div class="post-buttons">
                             <form method="POST" action="/delete/<%= message.id %>"> 
                                 <button class="delete-button">
@@ -37,6 +38,7 @@
                                     <span class="edit-button__icon">&#9998;</span>
                                 </button>
                         </div>
+                        <% } %>
                         <a href="/messages/<%= message.id %>" class="post__link">
                             <li class="post__item">
                                 <img class="post__item-user-image" src="/images/no-user.jpg" alt="">

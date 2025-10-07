@@ -1,31 +1,32 @@
 <%- include("partials/header.ejs") %>
 <div class="">
     <div class="message-post-page">
-                <form method="POST" action="/delete/<%= message.id %>"> 
-                            <button class="delete-button">
-                                <span class="delete-button__icon-1"></span>
-                                <span class="delete-button__icon-2"></span>
-                            </button>  
-                </form>
-                <a href="/messages/<%= message.id %>" class="post__link">
-                            <li class="post__item">
-                                <img class="post__item-user-image" src="/images/no-user.jpg" alt="">
-                                <p class="post__item-user-name"><%= message.user %>  </p>
-                                <p class="post__item-subject-name">      <%= message.subject %></p>
-                                <p class="post__item-message-text"><%= message.text %></p>
-                                <% if (message.image) { %>
-                                <div class="post__image-container">
-                                    <img class="post__image-container-background" src="/<%= message.image %>" alt="">
-                                    <img class="post__image-container-image" src="/<%= message.image %>" alt="">
-                                </div>
-                                <% } %>
-                            </li>
+        <% if(message.userId === userNumberId ){ %>
+            <form method="POST" action="/delete/<%= message.id %>"> 
+                    <button class="delete-button">
+                        <span class="delete-button__icon-1"></span>
+                        <span class="delete-button__icon-2"></span>
+                    </button>  
+            </form>
+        <% } %>
+            <li class="post__item">
+                <img class="post__item-user-image" src="/images/no-user.jpg" alt="">
+                <p class="post__item-user-name"><%= message.user %>  </p>
+                <p class="post__item-subject-name">      <%= message.subject %></p>
+                <p class="post__item-message-text"><%= message.text %></p>
+                <% if (message.image) { %>
+                    <div class="post__image-container">
+                            <img class="post__image-container-background" src="/<%= message.image %>" alt="">
+                            <img class="post__image-container-image" src="/<%= message.image %>" alt="">
+                    </div>
+                <% } %>
+            </li>
                 </a>
                 <div class="">
                             <div>
                                 <form class="comment-form" id="commentForm<%= message.id %>" action="/comment/<%= message.id %>" method="POST">
                                     <textarea  class="comment-form__text" name="textComment" placeholder="Your Comment" maxlength="300" oninput="grow(this)"></textarea>
-                                    <button class="small-button" type="submit">Submit</button>
+                                    <button class="small-button" type="submit">Comment</button>
                                 </form>
                             </div>
                             <ul>
@@ -34,12 +35,14 @@
                                 .filter(comment => comment.messageId === message.id)
                                 .forEach(comment => { %>
                                 <li class="comment-item">
-                                    <form method="POST" action="/commentDelete/<%= message.id %>"> 
-                                        <button class="comment-delete-button">
-                                            <span class="comment-delete-button__icon-1"></span>
-                                            <span class="comment-delete-button__icon-2"></span>
-                                        </button>  
-                                    </form>
+                                      <% if(comment.userId === userNumberId ){ %>
+                                        <form method="POST" action="/commentDelete/<%= message.id %>"> 
+                                            <button class="comment-delete-button">
+                                                <span class="comment-delete-button__icon-1"></span>
+                                                <span class="comment-delete-button__icon-2"></span>
+                                            </button>  
+                                        </form>
+                                    <% } %> 
                                     <img class="comment-item__user-image-small" src="/images/no-user.jpg" alt="">
                                     <p class="comment-item__user"><%= comment.user %></p>
                                     <p class="comment-item__text"><%= comment.text %></p>

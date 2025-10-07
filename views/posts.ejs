@@ -6,6 +6,7 @@
             <% messages.forEach(message => { %>
                 <hr class="post__break">
                     <div class="post">
+                        <% if(message.userId === userNumberId ){ %>
                         <div class="post-buttons">
                             <form method="POST" action="/delete/<%= message.id %>"> 
                                 <button class="delete-button">
@@ -17,6 +18,7 @@
                                     <span class="edit-button__icon">&#9998;</span>
                                 </button>
                         </div>
+                        <% } %>
                         <a href="/messages/<%= message.id %>" class="post__link">
                             <li class="post__item">
                                 <img class="post__item-user-image" src="/images/no-user.jpg" alt="">
@@ -39,12 +41,14 @@
                                 .slice(0,2)
                                 .forEach(comment => { %>
                                 <li class="comment-item">
-                                    <form method="POST" action="/commentDelete/<%= message.id %>"> 
-                                        <button class="comment-delete-button">
-                                            <span class="comment-delete-button__icon-1"></span>
-                                            <span class="comment-delete-button__icon-2"></span>
-                                        </button>  
-                                    </form>
+                                    <% if(message.userId === userNumberId ){ %>
+                                        <form method="POST" action="/commentDelete/<%= message.id %>"> 
+                                            <button class="comment-delete-button">
+                                                <span class="comment-delete-button__icon-1"></span>
+                                                <span class="comment-delete-button__icon-2"></span>
+                                            </button>  
+                                        </form>
+                                    <% } %> 
                                     <img class="comment-item__user-image-small" src="/images/no-user.jpg" alt="">
                                     <p class="comment-item__user"><%= comment.user %></p>
                                     <p class="comment-item__text"><%= comment.text %></p>
