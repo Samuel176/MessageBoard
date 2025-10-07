@@ -42,10 +42,17 @@
     
 
     &__text{
+        resize: none;
         margin-bottom: 1rem;
         font-size: 1.5rem;
         width: 100%;
         @include border-shadow-light;
+        transition: all .2s;
+        border-bottom: 2px solid $color-dark-grey;
+        
+        &:focus{
+            border-bottom: 2px solid $color-light-black;
+        }
     }
 
     

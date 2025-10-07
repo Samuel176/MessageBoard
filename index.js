@@ -66,9 +66,9 @@ app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
 app.get("/", (req, res) => {
-  let userId = req.cookies.userId;
-  let userNumberId = req.cookies.userNumberId;
-  let firstVistit = false;
+  const userId = req.cookies.userId;
+  const userNumberId = req.cookies.userNumberId;
+  const firstVistit = false;
   if(!userId){
     userId = generateUserName();
     userNumberId = generateUserName();
@@ -116,9 +116,10 @@ app.get("/contact", (req, res) =>{
 app.get("/messages/:id", (req, res) => {
   const messageId = parseInt(req.params.id);
   const message = messages.find(msg => msg.id === messageId);
+  const userNumberId = req.cookies.userNumberId;
 
   if (message) {
-    res.render("message", { message, comments });
+    res.render("message", { message, comments, userNumberId});
     
    
   } else {
