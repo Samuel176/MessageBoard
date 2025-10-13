@@ -9,6 +9,10 @@
     @include border-shadow-light;
     position: relative;
     @include border-curve-small;
+
+    &:hover{
+        background-color: #f7f7f7;
+    }
     
     &__item{
         word-wrap: break-word;
