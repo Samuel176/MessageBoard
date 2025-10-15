@@ -86,7 +86,6 @@ app.get("/", (req, res) => {
 app.post("/userName", (req, res) =>{
   const newName = req.body.user || req.cookies.userId;
   res.cookie('userId', newName, { httpOnly: true });
-  console.log(newName);
   res.redirect("/");
 })
 

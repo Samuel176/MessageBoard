@@ -5,7 +5,7 @@
         <ul class="message-board-list">
             <% messages.forEach(message => { %>
                 <hr class="post__break">
-                    <div class="post">
+                <div class="post">
                         <% if(message.userId === userNumberId ){ %>
                         <div class="post-buttons">
                             <form method="POST" action="/delete/<%= message.id %>"> 
