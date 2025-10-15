@@ -799,6 +799,10 @@ input:focus-visible, textarea:focus-visible {
   padding: 0;
 }
 
+.copy-right-footer {
+  text-align: center;
+}
+
 .message-post-page {
   max-width: 1024px;
   padding: 1rem;
