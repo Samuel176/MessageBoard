@@ -15,11 +15,12 @@
         margin: 0;
         font-weight: 700;
         margin-bottom: 1rem;
+        font-size: 1.3rem;
     }
 
     &__text{
         margin-left: 1rem;
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
 
     &__user-image-small{
@@ -45,7 +46,7 @@
     &__text{
         resize: none;
         margin-bottom: 1rem;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         width: 100%;
         @include border-shadow-light;
         transition: all .2s;
